@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jouw Naam — Designer</title>
+<meta name="description" content="Portfolio van Jouw Naam, designer.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream: #f4ede4;
+  --ink: #1a1a1a;
+  --tomato: #ff5733;
+  --sun: #ffd23f;
+  --grass: #4a7c59;
+  --sky: #5a8fc4;
+  --pink: #ff8fab;
+  --shadow: rgba(26, 26, 26, 0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: multiply;
+}
+
+/* Marquee top bar */
+.marquee {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 12px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.marquee-track {
+  display: inline-block;
+  animation: scroll 30s linear infinite;
+}
+
+.marquee span {
+  margin: 0 30px;
+}
+
+.marquee span::before {
+  content: "✦";
+  margin-right: 30px;
+  color: var(--sun);
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Nav */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 5vw;
+  position: relative;
+}
+
+.logo {
+  font-family: 'Instrument Serif', serif;
+  font-size: 28px;
+  font-style: italic;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.logo span { color: var(--tomato); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--ink);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--tomato);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover { color: var(--tomato); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Hero */
+.hero {
+  padding: 60px 5vw 120px;
+  position: relative;
+  min-height: 80vh;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(60px, 14vw, 220px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 40px;
+}
+
+.hero h1 .italic {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--tomato);
+}
+
+.hero h1 .underline {
+  display: inline-block;
+  position: relative;
+}
+
+.hero h1 .underline::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  bottom: 8%;
+  width: 104%;
+  height: 16px;
+  background: var(--sun);
+  z-index: -1;
+  transform: rotate(-1deg);
+}
+
+.hero-meta {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-top: 80px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero-meta div { max-width: 300px; }
+.hero-meta strong { color: var(--tomato); display: block; margin-bottom: 8px; font-weight: 500; }
+
+/* Floating shapes */
+.shape {
+  position: absolute;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+  top: 10%; right: 8%;
+  width: 80px; height: 80px;
+  background: var(--tomato);
+  border-radius: 50%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  top: 50%; right: 15%;
+  width: 60px; height: 60px;
+  background: var(--grass);
+  transform: rotate(45deg);
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  top: 25%; right: 25%;
+  width: 40px; height: 40px;
+  background: var(--sky);
+  border-radius: 50%;
+  animation-delay: 1s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+.shape-2 { animation-name: float-square; }
+@keyframes float-square {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(55deg) translateY(-15px); }
+}
+
+/* Work section */
+.work {
+  padding: 80px 5vw;
+  background: var(--ink);
+  color: var(--cream);
+  position: relative;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.section-header h2 {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 80px);
+  letter-spacing: -0.02em;
+}
+
+.section-header .count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--sun);
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.project {
+  background: var(--cream);
+  color: var(--ink);
+  padding: 40px;
+  border-radius: 4px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.project:hover {
+  transform: translateY(-8px) rotate(-0.5deg);
+}
+
+.project-1 { grid-column: span 7; background: var(--tomato); color: var(--cream); }
+.project-2 { grid-column: span 5; background: var(--sun); }
+.project-3 { grid-column: span 5; background: var(--grass); color: var(--cream); }
+.project-4 { grid-column: span 7; background: var(--pink); }
+.project-5 { grid-column: span 12; background: var(--sky); color: var(--cream); }
+
+.project-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.project h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.05;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.project p {
+  font-size: 16px;
+  max-width: 400px;
+  opacity: 0.85;
+}
+
+.project-arrow {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: transform 0.3s;
+}
+
+.project:hover .project-arrow {
+  transform: rotate(-45deg);
+}
+
+.project-2 .project-arrow,
+.project-4 .project-arrow {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* About */
+.about {
+  padding: 120px 5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1;
+  margin-bottom: 32px;
+  letter-spacing: -0.03em;
+}
+
+.about-text h2 em {
+  font-family: 'Instrument Serif', serif;
+  color: var(--tomato);
+}
+
+.about-text p {
+  font-size: 20px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.about-visual {
+  background: var(--tomato);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.about-visual::before {
+  content: '✦';
+  font-size: 120px;
+  color: var(--cream);
+}
+
+/* Contact */
+.contact {
+  padding: 120px 5vw 80px;
+  text-align: center;
+  background: var(--sun);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact h2 {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(60px, 12vw, 180px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 40px;
+}
+
+.contact a.email-link {
+  display: inline-block;
+  font-family: 'Fraunces', serif;
+  font-size: clamp(24px, 3vw, 36px);
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 4px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.contact a.email-link:hover {
+  color: var(--tomato);
+  border-color: var(--tomato);
+}
+
+.socials {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.socials a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 12px 24px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.socials a:hover {
+  background: var(--ink);
+  color: var(--sun);
+}
+
+/* Footer */
+footer {
+  padding: 32px 5vw;
+  background: var(--ink);
+  color: var(--cream);
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 11px; }
+  .projects { grid-template-columns: 1fr; }
+  .project-1, .project-2, .project-3, .project-4, .project-5 { grid-column: span 1; }
+  .about { grid-template-columns: 1fr; gap: 40px; }
+  .about-visual { max-width: 280px; }
+  .hero { padding: 40px 5vw 80px; min-height: auto; }
+  .shape { display: none; }
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- Marquee -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Beschikbaar voor freelance werk</span>
+    <span>Op zoek naar samenwerkingen</span>
+    <span>Gevestigd in Amsterdam</span>
+    <span>Beschikbaar voor freelance werk</span>
+    <span>Op zoek naar samenwerkingen</span>
+    <span>Gevestigd in Amsterdam</span>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="logo">Jouw<span>.</span>Naam</a>
+  <ul class="nav-links">
+    <li><a href="#work">Werk</a></li>
+    <li><a href="#about">Over</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+
+  <h1>
+    Designer<br>
+    die <span class="italic">verhalen</span><br>
+    <span class="underline">vertelt</span>.
+  </h1>
+
+  <div class="hero-meta">
+    <div>
+      <strong>Wat ik doe</strong>
+      Visual identity, branding, illustratie en webdesign voor merken die durven opvallen.
+    </div>
+    <div>
+      <strong>Locatie</strong>
+      Amsterdam, NL<br>
+      Werk wereldwijd
+    </div>
+    <div>
+      <strong>Status</strong>
+      Beschikbaar voor projecten<br>
+      vanaf juni 2026
+    </div>
+  </div>
+</section>
+
+<!-- Work -->
+<section class="work" id="work">
+  <div class="section-header">
+    <h2>Geselecteerd werk</h2>
+    <div class="count">2024 — 2026 / 05 projecten</div>
+  </div>
+
+  <div class="projects">
+    <div class="project project-1">
+      <div class="project-tag">Branding · 2026</div>
+      <h3>Bloei &amp; Co.<br>Een nieuwe identiteit</h3>
+      <p>Volledige rebrand voor een lokale bloemenwinkel met een speelse, moderne uitstraling.</p>
+      <div class="project-arrow">→</div>
+    </div>
+
+    <div class="project project-2">
+      <div class="project-tag">Illustratie · 2025</div>
+      <h3>Verhalen uit de Stad</h3>
+      <p>Serie van 12 illustraties voor een uitgever.</p>
+      <div class="project-arrow">→</div>
+    </div>
+
+    <div class="project project-3">
+      <div class="project-tag">Webdesign · 2025</div>
+      <h3>Studio Maan</h3>
+      <p>Portfolio site voor een fotograaf.</p>
+      <div class="project-arrow">→</div>
+    </div>
+
+    <div class="project project-4">
+      <div class="project-tag">Visual Identity · 2025</div>
+      <h3>Festival Lichtjaar</h3>
+      <p>Identiteit en posters voor een muziekfestival.</p>
+      <div class="project-arrow">→</div>
+    </div>
+
+    <div class="project project-5">
+      <div class="project-tag">Editorial · 2024</div>
+      <h3>Magazine ‘Twee Kanten’</h3>
+      <p>Art direction en layout voor een onafhankelijk magazine.</p>
+      <div class="project-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="about-text">
+    <h2>Hoi, ik ben <em>[naam]</em>.</h2>
+    <p>Ik ben een designer met een voorliefde voor kleur, typografie, en projecten die net iets anders durven zijn dan de rest.</p>
+    <p>Sinds 2020 werk ik samen met startups, kunstenaars en uitgevers aan visuele identiteiten en digitale producten. Mijn werk is verschenen in [magazine], gepresenteerd op [event], en gewaardeerd door mensen die net als ik geloven dat design zowel mooi als grappig mag zijn.</p>
+  </div>
+  <div class="about-visual"></div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <h2>Laten we<br>iets <em>moois</em> maken.</h2>
+  <a href="mailto:hallo@jouwnaam.nl" class="email-link">hallo@jouwnaam.nl</a>
+  <div class="socials">
+    <a href="#" target="_blank" rel="noopener">Instagram</a>
+    <a href="#" target="_blank" rel="noopener">Behance</a>
+    <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="#" target="_blank" rel="noopener">Are.na</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div>© 2026 Jouw Naam</div>
+  <div>Gemaakt met ♥ in Amsterdam</div>
+</footer>
+
+<script>
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.project, .about-text, .about-visual').forEach(el => {
+  el.classList.add('reveal');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
