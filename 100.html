@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emma '98 — Portfolio</title>
+<meta name="description" content="Portfolio of Emma Schreinemacher — sustainability consulting, strategic design, graphic design and drawing.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --desktop: #6ab7d9;
+  --desktop-2: #4a9bc4;
+  --window: #c3c3c3;
+  --window-light: #ffffff;
+  --window-dark: #808080;
+  --window-darker: #1a1a1a;
+  --titlebar: #000080;
+  --titlebar-text: #ffffff;
+  --button: #c3c3c3;
+  --text: #000000;
+  --highlight: #000080;
+  --highlight-text: #ffffff;
+  --link: #0000ee;
+
+  /* Light blue accent color for folder cards */
+  --card-blue: #b3d9ec;
+  --card-blue-dark: #8cbedb;
+
+  --font-ui: 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+  --font-body: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
+  --font-title: 'DM Serif Display', 'Georgia', serif;
+  --font-pixel: 'Press Start 2P', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text);
+  cursor: default;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--desktop);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 50%, transparent 50%),
+    radial-gradient(ellipse at center, var(--desktop) 0%, var(--desktop-2) 100%);
+  background-size: 100% 3px, 100% 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  /* MORE space for bottom nav */
+  padding-bottom: 70px;
+}
+
+a { color: var(--link); }
+
+/* DESKTOP ICONS */
+.desktop-icons {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 5;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 76px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  text-shadow: 1px 1px 0 #000;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  line-height: 1.2;
+  padding: 4px;
+}
+
+.desktop-icon:hover {
+  background: rgba(0, 0, 128, 0.3);
+  outline: 1px dotted #fff;
+}
+
+.icon-img {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+/* WINDOW — draggable + resizable */
+.window {
+  background: var(--window);
+  border-top: 2px solid var(--window-light);
+  border-left: 2px solid var(--window-light);
+  border-right: 2px solid var(--window-darker);
+  border-bottom: 2px solid var(--window-darker);
+  box-shadow:
+    inset -1px -1px 0 var(--window-dark),
+    inset 1px 1px 0 var(--window),
+    2px 2px 0 var(--window-darker);
+
+  position: absolute;
+  top: 40px;
+  left: 120px;
+  width: 920px;
+  max-width: calc(100vw - 140px);
+  min-width: 320px;
+  min-height: 300px;
+
+  resize: both;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.window.dragging { user-select: none; }
+
+@media (max-width: 800px) {
+  .window {
+    left: 10px !important;
+    top: 10px !important;
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px);
+  }
+  .desktop-icons { display: none; }
+}
+
+/* TITLEBAR */
+.titlebar {
+  background: linear-gradient(90deg, var(--titlebar) 0%, #1084d0 100%);
+  color: var(--titlebar-text);
+  padding: 3px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 12px;
+  cursor: move;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.titlebar-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 4px;
+}
+
+.titlebar-icon { font-size: 14px; }
+
+.titlebar-buttons { display: flex; gap: 2px; }
+
+.tb-btn {
+  width: 18px;
+  height: 16px;
+  background: var(--button);
+  border-top: 1px solid var(--window-light);
+  border-left: 1px solid var(--window-light);
+  border-right: 1px solid var(--window-darker);
+  border-bottom: 1px solid var(--window-darker);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-bottom: 2px;
+  font-weight: 700;
+}
+
+/* MENUBAR */
+.menubar {
+  display: flex;
+  background: var(--window);
+  padding: 2px 4px;
+  gap: 2px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  border-bottom: 1px solid var(--window-dark);
+  flex-shrink: 0;
+}
+
+.menubar span { padding: 2px 8px; cursor: pointer; }
+.menubar span:hover { background: var(--highlight); color: var(--highlight-text); }
+.menubar span u { text-decoration: underline; }
+
+/* TOOLBAR */
+.toolbar {
+  background: var(--window);
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--window-dark);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.toolbar-btn {
+  background: var(--button);
+  border-top: 1px solid var(--window-light);
+  border-left: 1px solid var(--window-light);
+  border-right: 1px solid var(--window-darker);
+  border-bottom: 1px solid var(--window-darker);
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar-btn:active {
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+}
+
+/* ADDRESS BAR */
+.addressbar {
+  background: var(--window);
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--window-dark);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.addressbar label { padding-left: 4px; }
+
+.addressbar input {
+  flex: 1;
+  background: white;
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  padding: 3px 6px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+/* CONTENT AREA */
+.content {
+  background: white;
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  margin: 4px;
+  padding: 32px;
+  font-family: var(--font-body);
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* STATUS BAR */
+.statusbar {
+  background: var(--window);
+  padding: 3px 6px;
+  display: flex;
+  gap: 4px;
+  border-top: 1px solid var(--window-light);
+  font-size: 11px;
+  font-family: var(--font-ui);
+  flex-shrink: 0;
+}
+
+.statusbar .cell {
+  background: var(--window);
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  padding: 2px 8px;
+  flex: 1;
+}
+
+.statusbar .cell.small { flex: 0 0 auto; }
+
+/* PAGE SYSTEM */
+.page { display: none; }
+.page.active { display: block; }
+
+/* HOME PAGE */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+  align-items: start;
+}
+
+.hero-portrait-frame {
+  background: var(--window);
+  padding: 6px;
+  border-top: 2px solid var(--window-darker);
+  border-left: 2px solid var(--window-darker);
+  border-right: 2px solid var(--window-light);
+  border-bottom: 2px solid var(--window-light);
+}
+
+.hero-portrait {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #d8d8d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-align: center;
+  color: #555;
+  padding: 12px;
+  border: 1px solid var(--window-dark);
+  overflow: hidden;
+}
+
+.hero-portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+.hero-info { font-family: var(--font-body); }
+
+.hero-info .label {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.hero-info h1 {
+  font-family: var(--font-title);
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1;
+  margin-bottom: 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.hero-info .intro {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-family: var(--font-body);
+  max-width: 540px;
+}
+
+.status-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffff99;
+  border: 1px solid #888;
+  padding: 6px 10px;
+  font-size: 12px;
+  margin-bottom: 16px;
+  font-family: var(--font-ui);
+}
+
+.status-row::before { content: '✦'; color: #cc0000; }
+
+.email-link {
+  display: inline-block;
+  font-family: var(--font-title);
+  font-size: 22px;
+  color: var(--link);
+  text-decoration: underline;
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+
+h2.win-section {
+  font-family: var(--font-title);
+  font-size: 28px;
+  margin: 40px 0 16px;
+  font-weight: 400;
+  border-bottom: 2px dotted #aaa;
+  padding-bottom: 8px;
+}
+
+p.section-intro {
+  font-family: var(--font-body);
+  font-size: 13px;
+  margin-bottom: 16px;
+  color: #444;
+}
+
+/* FILE GRID */
+.file-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.file-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 8px 4px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.file-item:hover {
+  background: rgba(0, 0, 128, 0.1);
+  border: 1px dotted #000080;
+}
+
+.file-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #e8e8e8;
+  border: 1px solid var(--window-dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 1px 1px 0 var(--window-darker);
+}
+
+.file-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.file-thumb .placeholder {
+  font-family: var(--font-ui);
+  font-size: 28px;
+  color: #888;
+}
+
+.file-name {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.file-meta {
+  font-size: 10px;
+  color: #666;
+  margin-top: 2px;
+  font-family: var(--font-ui);
+}
+
+/* =============================================================
+   FOLDER CARDS — now LIGHT BLUE
+   ============================================================= */
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 20px 0 40px;
+}
+
+@media (max-width: 600px) {
+  .folder-grid { grid-template-columns: 1fr; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-portrait-frame { max-width: 200px; }
+}
+
+.folder-card {
+  background: var(--card-blue);
+  border-top: 2px solid var(--window-light);
+  border-left: 2px solid var(--window-light);
+  border-right: 2px solid var(--card-blue-dark);
+  border-bottom: 2px solid var(--card-blue-dark);
+  padding: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background 0.15s;
+}
+
+.folder-card:hover {
+  background: #c5e0ef;
+}
+
+.folder-icon {
+  width: 48px;
+  height: 40px;
+  background: linear-gradient(180deg, #ffd966 0%, #e8b923 100%);
+  border: 1px solid #8a6914;
+  border-radius: 2px 2px 4px 4px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.folder-icon::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 4px;
+  width: 16px;
+  height: 6px;
+  background: linear-gradient(180deg, #ffd966 0%, #d4a31e 100%);
+  border: 1px solid #8a6914;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+}
+
+.folder-card h3 {
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.folder-card p {
+  font-size: 12px;
+  color: #1a3540;
+  line-height: 1.5;
+  font-family: var(--font-body);
+}
+
+/* PROJECT DETAIL */
+.project-detail h1 {
+  font-family: var(--font-title);
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: #f0f0f0;
+  border: 1px solid var(--window-dark);
+  padding: 8px 12px;
+  margin-bottom: 24px;
+  font-size: 12px;
+  font-family: var(--font-ui);
+}
+
+.detail-meta strong { font-weight: 700; }
+
+.project-detail p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 720px;
+  font-family: var(--font-body);
+}
+
+.project-detail h2 {
+  font-family: var(--font-title);
+  font-size: 22px;
+  margin: 32px 0 12px;
+  font-weight: 400;
+}
+
+.detail-image {
+  width: 100%;
+  background: #e8e8e8;
+  border: 1px solid var(--window-dark);
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-family: var(--font-body);
+  font-size: 13px;
+  overflow: hidden;
+  box-shadow: inset 1px 1px 0 #aaa;
+  min-height: 200px;
+}
+
+.detail-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.detail-image.empty { aspect-ratio: 16 / 10; }
+
+/* =============================================================
+   NEW BOTTOM NAVIGATION (replaces old taskbar)
+   Big visible buttons like the Robert Stanley reference
+   ============================================================= */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: var(--window);
+  border-top: 2px solid var(--window-light);
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  gap: 6px;
+  z-index: 100;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+.start-btn {
+  background: var(--button);
+  border-top: 1px solid var(--window-light);
+  border-left: 1px solid var(--window-light);
+  border-right: 1px solid var(--window-darker);
+  border-bottom: 1px solid var(--window-darker);
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.start-flag {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background:
+    linear-gradient(135deg, #ff0000 0%, #ff0000 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, #00ff00 50%),
+    linear-gradient(45deg, #ffff00 0%, #ffff00 50%, transparent 50%),
+    linear-gradient(45deg, transparent 50%, #0000ff 50%);
+  background-size: 50% 50%;
+  background-position: top left, top right, bottom left, bottom right;
+  background-repeat: no-repeat;
+}
+
+/* Big nav buttons in the middle */
+.bottom-nav {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  margin-left: 6px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.bottom-nav::-webkit-scrollbar { height: 4px; }
+.bottom-nav::-webkit-scrollbar-thumb { background: var(--window-dark); }
+
+.nav-btn {
+  background: var(--button);
+  border-top: 2px solid var(--window-light);
+  border-left: 2px solid var(--window-light);
+  border-right: 2px solid var(--window-darker);
+  border-bottom: 2px solid var(--window-darker);
+  padding: 8px 14px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  min-height: 40px;
+}
+
+.nav-btn:hover {
+  background: #d3d3d3;
+}
+
+.nav-btn:active,
+.nav-btn.active {
+  border-top: 2px solid var(--window-darker);
+  border-left: 2px solid var(--window-darker);
+  border-right: 2px solid var(--window-light);
+  border-bottom: 2px solid var(--window-light);
+  background: #b0b0b0;
+}
+
+.nav-btn .nav-icon {
+  font-size: 16px;
+}
+
+/* Resume button — special highlighted style */
+.nav-btn.resume {
+  background: #ffeb99;
+  border-top-color: #fff5cc;
+  border-left-color: #fff5cc;
+  border-right-color: #cca300;
+  border-bottom-color: #cca300;
+}
+
+.nav-btn.resume:hover {
+  background: #ffe066;
+}
+
+.tray {
+  background: var(--window);
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  padding: 8px 12px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  flex-shrink: 0;
+}
+
+.dialog-section {
+  background: var(--window);
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.dialog-section h3 {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, var(--titlebar) 0%, #1084d0 100%);
+  color: white;
+  padding: 3px 8px;
+  margin: -16px -16px 12px -16px;
+}
+
+.dialog-section p {
+  font-size: 13px;
+  line-height: 1.6;
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--titlebar);
+  color: white;
+}
+
+/* Hide some nav buttons on small screens */
+@media (max-width: 700px) {
+  .nav-btn span:not(.nav-icon) { display: none; }
+  .nav-btn { padding: 8px 10px; }
+  .start-btn span:last-child { display: none; }
+  .tray span:not(#clock) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- DESKTOP ICONS -->
+<div class="desktop-icons">
+  <a class="desktop-icon" onclick="showPage('home')">
+    <div class="icon-img">🖥️</div>
+    <span>My Computer</span>
+  </a>
+  <a class="desktop-icon" onclick="showPage('projects')">
+    <div class="icon-img">📁</div>
+    <span>Projects</span>
+  </a>
+  <a class="desktop-icon" onclick="showPage('emmaakt')">
+    <div class="icon-img">🎨</div>
+    <span>Em.maakt</span>
+  </a>
+  <a class="desktop-icon" onclick="showPage('others')">
+    <div class="icon-img">📂</div>
+    <span>Others</span>
+  </a>
+  <a class="desktop-icon" onclick="showPage('contact')">
+    <div class="icon-img">✉️</div>
+    <span>Contact</span>
+  </a>
+  <a class="desktop-icon" href="emma-cv.pdf" target="_blank">
+    <div class="icon-img">📄</div>
+    <span>Resume</span>
+  </a>
+  <a class="desktop-icon" href="#" onclick="event.preventDefault(); alert('Recycle Bin is empty.');">
+    <div class="icon-img">🗑️</div>
+    <span>Recycle Bin</span>
+  </a>
+</div>
+
+<!-- HOME -->
+<div class="page active" id="home">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">🖥️</span>
+        <span>Emma Schreinemacher — Portfolio</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn">×</div>
+      </div>
+    </div>
+
+    <div class="menubar">
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+      <button class="toolbar-btn" onclick="showPage('projects')">📁 Projects</button>
+      <button class="toolbar-btn" onclick="showPage('emmaakt')">🎨 Em.maakt</button>
+      <button class="toolbar-btn" onclick="showPage('others')">📂 Others</button>
+      <button class="toolbar-btn" onclick="showPage('contact')">✉️ Contact</button>
+    </div>
+
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\index.html" readonly>
+    </div>
+
+    <div class="content">
+      <div class="hero-grid">
+        <div class="hero-portrait-frame">
+          <div class="hero-portrait">
+            <img src="emma-foto.png" alt="Emma Schreinemacher">
+          </div>
+        </div>
+
+        <div class="hero-info">
+          <span class="label">Welcome</span>
+          <h1>Emma Schreinemacher</h1>
+          <p class="intro">A designer and student exploring the space between sustainability, strategy and visual storytelling. I work on projects that try to make a small but meaningful difference — and draw on the side under the name <em>Em.maakt</em>.</p>
+          <div class="status-row">Available for collaborations &amp; commissions</div>
+          <p style="font-size: 13px; color: #444; font-family: var(--font-body);">📍 2nd year SPD student · TU Delft</p>
+        </div>
+      </div>
+
+      <h2 class="win-section">My Work</h2>
+      <p class="section-intro">Pick a folder to explore.</p>
+
+      <div class="folder-grid">
+        <a class="folder-card" onclick="showPage('projects')">
+          <div class="folder-icon"></div>
+          <h3>Projects</h3>
+          <p>Sustainability consulting &amp; strategic design — work from TU Delft and beyond.</p>
+        </a>
+
+        <a class="folder-card" onclick="showPage('emmaakt')">
+          <div class="folder-icon"></div>
+          <h3>Em.maakt</h3>
+          <p>My drawing practice — illustrations, postcards and personal commissions.</p>
+        </a>
+
+        <a class="folder-card" onclick="showPage('others')">
+          <div class="folder-icon"></div>
+          <h3>Others</h3>
+          <p>Writing, side projects and pieces that don't fit a single category.</p>
+        </a>
+      </div>
+
+      <div class="dialog-section">
+        <h3>About Me</h3>
+        <p>
+          Hi, I'm Emma! I'm in my second year of Strategic Product Design at TU Delft, where I'm learning to design products and services that work for people <em>and</em> for the planet. My interests sit at the crossroads of sustainability consulting, strategic design and graphic design — and I believe good ideas often start with a pen and a piece of paper, which is why I draw a lot.
+        </p>
+        <p style="margin-top: 12px;">
+          Outside of class I take on small commissions through <strong>Em.maakt</strong> — birthday cards, illustrations, the occasional commission. I like working with people who care about what they make. If that sounds like you, get in touch!
+        </p>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">3 folder(s)</div>
+      <div class="cell small">💾 Disk: free</div>
+      <div class="cell small">🌐 Online</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS PAGE -->
+<div class="page" id="projects">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">📁</span>
+        <span>Projects</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('home')">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>G</u>o</span><span><u>H</u>elp</span>
+    </div>
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+    </div>
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\Projects" readonly>
+    </div>
+
+    <div class="content">
+      <h1 style="font-family: var(--font-title); font-size: 36px; font-weight: 400; margin-bottom: 8px;">Projects</h1>
+      <p style="font-family: var(--font-body); font-size: 13px; margin-bottom: 24px;">Sustainability consulting, strategic design, and graphic design work.</p>
+
+      <div class="file-grid">
+        <a class="file-item" onclick="showPage('project-1')">
+          <div class="file-thumb"><div class="placeholder">📄</div></div>
+          <div class="file-name">Project Name 1</div>
+          <div class="file-meta">Sustainability · 2025</div>
+        </a>
+        <a class="file-item" onclick="showPage('project-2')">
+          <div class="file-thumb"><div class="placeholder">📄</div></div>
+          <div class="file-name">Project Name 2</div>
+          <div class="file-meta">Strategic · 2025</div>
+        </a>
+        <a class="file-item" onclick="showPage('project-3')">
+          <div class="file-thumb"><div class="placeholder">📄</div></div>
+          <div class="file-name">Project Name 3</div>
+          <div class="file-meta">Graphic · 2024</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">3 object(s)</div>
+      <div class="cell small">📁 Projects</div>
+    </div>
+  </div>
+</div>
+
+<!-- EM.MAAKT PAGE -->
+<div class="page" id="emmaakt">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">🎨</span>
+        <span>Em.maakt</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('home')">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>G</u>o</span><span><u>H</u>elp</span>
+    </div>
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+    </div>
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\Em.maakt" readonly>
+    </div>
+
+    <div class="content">
+      <h1 style="font-family: var(--font-title); font-size: 36px; font-weight: 400; margin-bottom: 8px;">Em.maakt</h1>
+      <p style="font-family: var(--font-body); font-size: 13px; margin-bottom: 24px;">Drawings, illustrations and small commissions.</p>
+
+      <div class="file-grid">
+        <a class="file-item" onclick="showPage('drawing-groenteboer')">
+          <div class="file-thumb"><img src="groenteboer-italie.png" alt="Groenteboer in Italië"></div>
+          <div class="file-name">Groenteboer in Italië</div>
+          <div class="file-meta">Schilderij · 2024</div>
+        </a>
+
+        <a class="file-item" onclick="showPage('drawing-postkaart')">
+          <div class="file-thumb"><img src="bedankt-gastvrijheid.png" alt="Postkaart"></div>
+          <div class="file-name">Postkaartjes</div>
+          <div class="file-meta">Postcards · 2026</div>
+        </a>
+
+        <a class="file-item" onclick="showPage('drawing-juul')">
+          <div class="file-thumb"><img src="juul-104.png" alt="De Juul 104"></div>
+          <div class="file-name">De Juul 104</div>
+          <div class="file-meta">Illustratie · 2022</div>
+        </a>
+
+        <a class="file-item" onclick="showPage('drawing-japan')">
+          <div class="file-thumb"><img src="japan-2024.jpg" alt="Japan poster"></div>
+          <div class="file-name">Japan Poster</div>
+          <div class="file-meta">Poster · 2024</div>
+        </a>
+
+        <a class="file-item" onclick="showPage('drawing-ficq')">
+          <div class="file-thumb"><img src="ficq-partners.jpg" alt="Ficq & Partners"></div>
+          <div class="file-name">Ficq &amp; Partners</div>
+          <div class="file-meta">Commission · 2025</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">5 object(s)</div>
+      <div class="cell small">🎨 Em.maakt</div>
+    </div>
+  </div>
+</div>
+
+<!-- OTHERS PAGE -->
+<div class="page" id="others">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">📂</span>
+        <span>Others</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('home')">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>G</u>o</span><span><u>H</u>elp</span>
+    </div>
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+    </div>
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\Others" readonly>
+    </div>
+
+    <div class="content">
+      <h1 style="font-family: var(--font-title); font-size: 36px; font-weight: 400; margin-bottom: 8px;">Others</h1>
+      <p style="font-family: var(--font-body); font-size: 13px; margin-bottom: 24px;">Side projects, writing, and miscellaneous pieces.</p>
+
+      <div class="file-grid">
+        <a class="file-item" onclick="showPage('other-1')">
+          <div class="file-thumb"><div class="placeholder">📝</div></div>
+          <div class="file-name">Something Else</div>
+          <div class="file-meta">Writing · 2024</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">1 object(s)</div>
+      <div class="cell small">📂 Others</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="contact">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">✉️</span>
+        <span>Contact</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('home')">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>G</u>o</span><span><u>H</u>elp</span>
+    </div>
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+    </div>
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\Contact" readonly>
+    </div>
+
+    <div class="content">
+      <h1 style="font-family: var(--font-title); font-size: 44px; font-weight: 400; margin-bottom: 16px;">Let's Work Together</h1>
+      <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; margin-bottom: 24px; max-width: 600px;">
+        Got a project in mind? I'd love to hear about it. Reach out to discuss your ideas, ask a question, or just say hi.
+      </p>
+
+      <div class="status-row" style="margin-bottom: 24px;">Available for hire</div>
+
+      <a href="mailto:emma_schreinemacher@kpnmail.nl" class="email-link">emma_schreinemacher@kpnmail.nl</a>
+
+      <div class="dialog-section" style="margin-top: 32px; max-width: 500px;">
+        <h3>Find me elsewhere</h3>
+        <p style="font-family: var(--font-body); font-size: 13px; line-height: 1.8;">
+          💼 LinkedIn: <a href="#" target="_blank">Emma Schreinemacher</a><br>
+          📄 Resume: <a href="emma-cv.pdf" target="_blank">View CV (PDF)</a><br>
+          🎓 TU Delft: SPD program<br>
+          📍 Based in Delft, NL
+        </p>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">Ready</div>
+      <div class="cell small">✉️ Contact</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT PAGES (placeholder) -->
+<div class="page" id="project-1">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text"><span class="titlebar-icon">📄</span><span>Project Name 1</span></div>
+      <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('projects')">×</div></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Projects</button></div>
+    <div class="content project-detail">
+      <h1>Project Name 1</h1>
+      <div class="detail-meta">
+        <div><strong>Discipline:</strong> Sustainability</div>
+        <div><strong>Year:</strong> 2025</div>
+        <div><strong>Context:</strong> TU Delft</div>
+      </div>
+      <p>Write here about the project.</p>
+      <div class="detail-image empty">Hero image goes here</div>
+    </div>
+    <div class="statusbar"><div class="cell">Project loaded</div></div>
+  </div>
+</div>
+
+<div class="page" id="project-2">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text"><span class="titlebar-icon">📄</span><span>Project Name 2</span></div>
+      <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('projects')">×</div></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Projects</button></div>
+    <div class="content project-detail">
+      <h1>Project Name 2</h1>
+      <div class="detail-meta">
+        <div><strong>Discipline:</strong> Strategic Design</div>
+        <div><strong>Year:</strong> 2025</div>
+      </div>
+      <p>Project description.</p>
+      <div class="detail-image empty">Image</div>
+    </div>
+    <div class="statusbar"><div class="cell">Project loaded</div></div>
+  </div>
+</div>
+
+<div class="page" id="project-3">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text"><span class="titlebar-icon">📄</span><span>Project Name 3</span></div>
+      <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('projects')">×</div></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Projects</button></div>
+    <div class="content project-detail">
+      <h1>Project Name 3</h1>
+      <div class="detail-meta">
+        <div><strong>Discipline:</strong> Graphic Design</div>
+        <div><strong>Year:</strong> 2024</div>
+      </div>
+      <p>Project description.</p>
+      <div class="detail-image empty">Image</div>
+    </div>
+    <div class="statusbar"><div class="cell">Project loaded</div></div>
+  </div>
+</div>
+
+<!-- EM.MAAKT INDIVIDUAL PAGES -->
+<div class="page" id="drawing-groenteboer">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text"><span class="titlebar-icon">🖼️</span><span>Groenteboer in Italië</span></div>
+      <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('emmaakt')">×</div></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('emmaakt')">⬅ Back to Em.maakt</button></div>
+    <div class="content project-detail">
+      <h1>Groenteboer in Italië</h1>
+      <div class="detail-meta">
+        <div><strong>Type:</strong> Schilderij</div>
+        <div><strong>Year:</strong> 2024</div>
+        <div><strong>Made on:</strong> Holiday</div>
+      </div>
+      <div class="detail-image"><img src="groenteboer-italie.png" alt="Groenteboer in Italië"></div>
+      <p>A painting made while on vacation in Italy. A colourful little market scene with a vegetable stall framed by red arches — capturing the warmth and rhythm of an Italian street.</p>
+    </div>
+    <div class="statusbar"><div class="cell">Image loaded</div></div>
+  </div>
+</div>
+
+<div class="page" id="drawing-postkaart">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text"><span class="titlebar-icon">🖼️</span><span>Postkaartjes</span></div>
+      <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('emmaakt')">×</div></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('emmaakt')">⬅ Back to Em.maakt</button></div>
+    <div class="content project-detail">
+      <h1>Postkaartjes</h1>
+      <div class="detail-meta">
+        <div><strong>Type:</strong> Postcards</div>
+        <div><strong>Year:</strong> 2026</div>
+        <div><strong>Style:</strong> Hand drawn</div>
+      </div>
+      <div class="detail-image"><img src="bedankt-gastvrijheid.png" alt="Postkaart"></div>
+      <p>A series of personal hand-drawn postcards — small thank-you notes and greetings, illustrated and lettered by hand. Each one made for a specific moment or person.</p>
+    </div>
+    <div class="statusbar"><div class="cell">Image loaded</div></div>
+  </div>
+</div>
+
+<div class="page" id="drawing-juul">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text"><span class="titlebar-icon">🖼️</span><span>De Juul 104</span></div>
+      <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('emmaakt')">×</div></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('emmaakt')">⬅ Back to Em.maakt</button></div>
+    <div class="content project-detail">
+      <h1>De Juul 104</h1>
+      <div class="detail-meta">
+        <div><strong>Type:</strong> Illustration</div>
+        <div><strong>Year:</strong> 2022</div>
+        <div><strong>Subject:</strong> An old house</div>
+      </div>
+      <div class="detail-image"><img src="juul-104.png" alt="De Juul 104"></div>
+      <p>A detailed pen illustration of an old house. A study in patience — every brick, every window frame, drawn line by line.</p>
+    </div>
+    <div class="statusbar"><div class="cell">Image loaded</div></div>
+  </div>
+</div>
+
+<div class="page" id="drawing-japan">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text"><span class="titlebar-icon">🖼️</span><span>Japan Poster</span></div>
+      <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('emmaakt')">×</div></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('emmaakt')">⬅ Back to Em.maakt</button></div>
+    <div class="content project-detail">
+      <h1>Japan Poster</h1>
+      <div class="detail-meta">
+        <div><strong>Type:</strong> Poster</div>
+        <div><strong>Year:</strong> 2024</div>
+        <div><strong>Source:</strong> Personal photos</div>
+      </div>
+      <div class="detail-image"><img src="japan-2024.jpg" alt="Japan Poster 2024"></div>
+      <p>A poster collage made from photos I took during my trip to Japan in 2024 — a personal visual diary of details, places and small moments. Set against bright Yves Klein blue.</p>
+    </div>
+    <div class="statusbar"><div class="cell">Image loaded</div></div>
+  </div>
+</div>
+
+<div class="page" id="drawing-ficq">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text"><span class="titlebar-icon">🖼️</span><span>Ficq &amp; Partners Advocaten</span></div>
+      <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('emmaakt')">×</div></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('emmaakt')">⬅ Back to Em.maakt</button></div>
+    <div class="content project-detail">
+      <h1>Ficq &amp; Partners</h1>
+      <div class="detail-meta">
+        <div><strong>Type:</strong> Commission</div>
+        <div><strong>Year:</strong> 2025</div>
+        <div><strong>Client:</strong> Ficq &amp; Partners Advocaten</div>
+      </div>
+      <div class="detail-image"><img src="ficq-partners.jpg" alt="Ficq & Partners building"></div>
+      <p>A commissioned illustration for Ficq &amp; Partners Advocaten — a portrait of their office building. Detailed architectural rendering with hand-drawn texture.</p>
+    </div>
+    <div class="statusbar"><div class="cell">Image loaded</div></div>
+  </div>
+</div>
+
+<div class="page" id="other-1">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text"><span class="titlebar-icon">📝</span><span>Something Else</span></div>
+      <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('others')">×</div></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('others')">⬅ Back to Others</button></div>
+    <div class="content project-detail">
+      <h1>Something Else</h1>
+      <div class="detail-meta">
+        <div><strong>Type:</strong> Writing</div>
+        <div><strong>Year:</strong> 2024</div>
+      </div>
+      <p>Description.</p>
+    </div>
+    <div class="statusbar"><div class="cell">Document loaded</div></div>
+  </div>
+</div>
+
+<!-- =====================================================
+     NEW BOTTOM NAVIGATION — big buttons
+     ===================================================== -->
+<div class="taskbar">
+  <div class="start-btn" onclick="showPage('home')">
+    <span class="start-flag"></span>
+    <span>Start</span>
+  </div>
+
+  <div class="bottom-nav">
+    <a class="nav-btn" onclick="showPage('home')">
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a class="nav-btn" onclick="showPage('projects')">
+      <span class="nav-icon">📁</span>
+      <span>Projects</span>
+    </a>
+    <a class="nav-btn" onclick="showPage('emmaakt')">
+      <span class="nav-icon">🎨</span>
+      <span>Em.maakt</span>
+    </a>
+    <a class="nav-btn" onclick="showPage('others')">
+      <span class="nav-icon">📂</span>
+      <span>Others</span>
+    </a>
+    <a class="nav-btn" onclick="showPage('contact')">
+      <span class="nav-icon">✉️</span>
+      <span>Contact</span>
+    </a>
+    <a class="nav-btn resume" href="emma-cv.pdf" target="_blank">
+      <span class="nav-icon">📄</span>
+      <span>Resume</span>
+    </a>
+  </div>
+
+  <div class="tray">
+    <span>🔊</span>
+    <span>📅</span>
+    <span id="clock">12:00 PM</span>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = document.getElementById(id);
+  if (page) {
+    page.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.pushState(null, '', '#' + id);
+
+    // Update which nav button is active
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    const navMap = {
+      'home': 0, 'projects': 1, 'emmaakt': 2, 'others': 3, 'contact': 4
+    };
+    const navButtons = document.querySelectorAll('.bottom-nav .nav-btn');
+    if (navMap[id] !== undefined && navButtons[navMap[id]]) {
+      navButtons[navMap[id]].classList.add('active');
+    }
+  }
+}
+
+function updateClock() {
+  const now = new Date();
+  let h = now.getHours();
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  document.getElementById('clock').textContent = `${h}:${m} ${ampm}`;
+}
+updateClock();
+setInterval(updateClock, 30000);
+
+window.addEventListener('load', () => {
+  const hash = window.location.hash.slice(1);
+  if (hash && document.getElementById(hash)) showPage(hash);
+  else showPage('home'); // ensure nav highlight on first load
+});
+
+window.addEventListener('popstate', () => {
+  const hash = window.location.hash.slice(1) || 'home';
+  if (document.getElementById(hash)) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(hash).classList.add('active');
+  }
+});
+
+/* DRAGGABLE WINDOWS */
+let zIndexCounter = 10;
+
+document.querySelectorAll('.window').forEach(win => {
+  const titlebar = win.querySelector('.titlebar');
+  if (!titlebar) return;
+
+  let isDragging = false;
+  let startX, startY, startLeft, startTop;
+
+  function startDrag(e) {
+    if (e.target.closest('.tb-btn')) return;
+
+    isDragging = true;
+    win.classList.add('dragging');
+    win.style.zIndex = ++zIndexCounter;
+
+    const evt = e.touches ? e.touches[0] : e;
+    startX = evt.clientX;
+    startY = evt.clientY;
+
+    const rect = win.getBoundingClientRect();
+    startLeft = rect.left;
+    startTop = rect.top + window.scrollY;
+
+    e.preventDefault();
+  }
+
+  function onDrag(e) {
+    if (!isDragging) return;
+    const evt = e.touches ? e.touches[0] : e;
+    const dx = evt.clientX - startX;
+    const dy = evt.clientY - startY;
+
+    let newLeft = startLeft + dx;
+    let newTop = startTop + dy;
+
+    if (newTop < 0) newTop = 0;
+    if (newLeft < -win.offsetWidth + 100) newLeft = -win.offsetWidth + 100;
+    if (newLeft > window.innerWidth - 100) newLeft = window.innerWidth - 100;
+
+    win.style.left = newLeft + 'px';
+    win.style.top = newTop + 'px';
+  }
+
+  function endDrag() {
+    isDragging = false;
+    win.classList.remove('dragging');
+  }
+
+  win.addEventListener('mousedown', () => {
+    win.style.zIndex = ++zIndexCounter;
+  });
+
+  titlebar.addEventListener('mousedown', startDrag);
+  titlebar.addEventListener('touchstart', startDrag, { passive: false });
+
+  document.addEventListener('mousemove', onDrag);
+  document.addEventListener('touchmove', onDrag, { passive: false });
+
+  document.addEventListener('mouseup', endDrag);
+  document.addEventListener('touchend', endDrag);
+});
+</script>
+
+</body>
+</html>
