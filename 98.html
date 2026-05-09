@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emma '98 — Portfolio</title>
+<meta name="description" content="Portfolio of Emma Schreinemacher — sustainability consulting, strategic design, graphic design and drawing.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=DM+Serif+Display&family=Pixelify+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   COLORS — Win 98 desktop palette
+   ============================================================ */
+:root {
+  --desktop: #008080;          /* iconic teal desktop */
+  --window: #c3c3c3;           /* window grey */
+  --window-light: #ffffff;     /* light bevel */
+  --window-dark: #808080;      /* dark bevel */
+  --window-darker: #1a1a1a;    /* darkest bevel */
+  --titlebar: #000080;         /* navy titlebar */
+  --titlebar-text: #ffffff;
+  --button: #c3c3c3;
+  --text: #000000;
+  --highlight: #000080;
+  --highlight-text: #ffffff;
+  --link: #0000ee;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  font-family: 'Pixelify Sans', 'Tahoma', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  cursor: default;
+  user-select: none;
+  -webkit-font-smoothing: none;
+}
+
+body {
+  background: var(--desktop);
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 50%, transparent 50%),
+    radial-gradient(ellipse at center, #009999 0%, #006666 100%);
+  background-size: 100% 3px, 100% 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding-bottom: 40px; /* room for taskbar */
+}
+
+a { color: var(--link); }
+
+/* ============================================================
+   DESKTOP ICONS (left side)
+   ============================================================ */
+.desktop-icons {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 5;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 76px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  text-shadow: 1px 1px 0 #000;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 4px;
+}
+
+.desktop-icon:hover {
+  background: rgba(0, 0, 128, 0.3);
+  outline: 1px dotted #fff;
+}
+
+.icon-img {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  image-rendering: pixelated;
+}
+
+/* ============================================================
+   WINDOW (the main UI element)
+   ============================================================ */
+.window {
+  background: var(--window);
+  border-top: 2px solid var(--window-light);
+  border-left: 2px solid var(--window-light);
+  border-right: 2px solid var(--window-darker);
+  border-bottom: 2px solid var(--window-darker);
+  box-shadow:
+    inset -1px -1px 0 var(--window-dark),
+    inset 1px 1px 0 var(--window),
+    2px 2px 0 var(--window-darker);
+  margin: 40px auto;
+  max-width: 920px;
+  width: calc(100% - 140px); /* leave space for desktop icons */
+  margin-left: 120px;
+}
+
+@media (max-width: 800px) {
+  .window {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .desktop-icons { display: none; }
+}
+
+/* TITLEBAR */
+.titlebar {
+  background: linear-gradient(90deg, var(--titlebar) 0%, #1084d0 100%);
+  color: var(--titlebar-text);
+  padding: 3px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.titlebar-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 4px;
+}
+
+.titlebar-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.titlebar-buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.tb-btn {
+  width: 18px;
+  height: 16px;
+  background: var(--button);
+  border-top: 1px solid var(--window-light);
+  border-left: 1px solid var(--window-light);
+  border-right: 1px solid var(--window-darker);
+  border-bottom: 1px solid var(--window-darker);
+  color: var(--text);
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 10px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-bottom: 2px;
+  font-weight: 700;
+}
+
+.tb-btn:active {
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+}
+
+/* MENUBAR */
+.menubar {
+  display: flex;
+  background: var(--window);
+  padding: 2px 4px;
+  gap: 2px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 13px;
+  border-bottom: 1px solid var(--window-dark);
+}
+
+.menubar span {
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.menubar span:hover {
+  background: var(--highlight);
+  color: var(--highlight-text);
+}
+
+.menubar span u { text-decoration: underline; }
+
+/* TOOLBAR */
+.toolbar {
+  background: var(--window);
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--window-dark);
+}
+
+.toolbar-btn {
+  background: var(--button);
+  border-top: 1px solid var(--window-light);
+  border-left: 1px solid var(--window-light);
+  border-right: 1px solid var(--window-darker);
+  border-bottom: 1px solid var(--window-darker);
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar-btn:active,
+.toolbar-btn.active {
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+}
+
+/* ADDRESS BAR */
+.addressbar {
+  background: var(--window);
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--window-dark);
+  font-size: 12px;
+}
+
+.addressbar label { padding-left: 4px; }
+
+.addressbar input {
+  flex: 1;
+  background: white;
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  padding: 3px 6px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+/* CONTENT AREA */
+.content {
+  background: white;
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  margin: 4px;
+  padding: 32px;
+  min-height: 400px;
+}
+
+/* STATUS BAR */
+.statusbar {
+  background: var(--window);
+  padding: 3px 6px;
+  display: flex;
+  gap: 4px;
+  border-top: 1px solid var(--window-light);
+  font-size: 12px;
+}
+
+.statusbar .cell {
+  background: var(--window);
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  padding: 2px 8px;
+  flex: 1;
+}
+
+.statusbar .cell.small { flex: 0 0 auto; }
+
+/* ============================================================
+   PAGE SYSTEM
+   ============================================================ */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ============================================================
+   HOME PAGE CONTENT
+   ============================================================ */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+  align-items: start;
+}
+
+.hero-portrait-frame {
+  background: var(--window);
+  padding: 6px;
+  border-top: 2px solid var(--window-darker);
+  border-left: 2px solid var(--window-darker);
+  border-right: 2px solid var(--window-light);
+  border-bottom: 2px solid var(--window-light);
+}
+
+.hero-portrait {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #d8d8d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 12px;
+  text-align: center;
+  color: #555;
+  padding: 12px;
+  border: 1px solid var(--window-dark);
+  overflow: hidden;
+}
+
+.hero-portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+.hero-info {
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+.hero-info .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.hero-info h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1;
+  margin-bottom: 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.hero-info .intro {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffff99;
+  border: 1px solid #888;
+  padding: 6px 10px;
+  font-size: 13px;
+  margin-bottom: 24px;
+  display: inline-flex;
+}
+
+.status-row::before {
+  content: '✦';
+  color: #cc0000;
+}
+
+.email-link {
+  display: inline-block;
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  color: var(--link);
+  text-decoration: underline;
+  margin-bottom: 8px;
+}
+
+/* SECTION HEADERS */
+h2.win-section {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  margin: 40px 0 20px;
+  font-weight: 400;
+  border-bottom: 2px dotted #aaa;
+  padding-bottom: 8px;
+}
+
+/* PROJECT GRID (Windows file-explorer style icons) */
+.file-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.file-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 8px 4px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.file-item:hover {
+  background: rgba(0, 0, 128, 0.1);
+  border: 1px dotted #000080;
+}
+
+.file-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #e8e8e8;
+  border: 1px solid var(--window-dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 1px 1px 0 var(--window-darker);
+}
+
+.file-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.file-thumb .placeholder {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 28px;
+  color: #888;
+}
+
+.file-name {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.file-meta {
+  font-size: 10px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* CATEGORIES (3 big folder cards on home) */
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 20px 0 40px;
+}
+
+@media (max-width: 600px) {
+  .folder-grid { grid-template-columns: 1fr; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-portrait-frame { max-width: 200px; }
+}
+
+.folder-card {
+  background: var(--window);
+  border-top: 2px solid var(--window-light);
+  border-left: 2px solid var(--window-light);
+  border-right: 2px solid var(--window-darker);
+  border-bottom: 2px solid var(--window-darker);
+  padding: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.1s;
+}
+
+.folder-card:active {
+  border-top: 2px solid var(--window-darker);
+  border-left: 2px solid var(--window-darker);
+  border-right: 2px solid var(--window-light);
+  border-bottom: 2px solid var(--window-light);
+}
+
+.folder-icon {
+  width: 48px;
+  height: 40px;
+  background: linear-gradient(180deg, #ffd966 0%, #e8b923 100%);
+  border: 1px solid #8a6914;
+  border-radius: 2px 2px 4px 4px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.folder-icon::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 4px;
+  width: 16px;
+  height: 6px;
+  background: linear-gradient(180deg, #ffd966 0%, #d4a31e 100%);
+  border: 1px solid #8a6914;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+}
+
+.folder-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.folder-card p {
+  font-size: 12px;
+  color: #444;
+  line-height: 1.4;
+}
+
+/* PROJECT DETAIL PAGE */
+.project-detail h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: #f0f0f0;
+  border: 1px solid var(--window-dark);
+  padding: 8px 12px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+.detail-meta strong { font-weight: 700; }
+
+.project-detail p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 720px;
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+.project-detail h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  margin: 32px 0 12px;
+  font-weight: 400;
+}
+
+.detail-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #e8e8e8;
+  border: 1px solid var(--window-dark);
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-family: 'Pixelify Sans', sans-serif;
+  overflow: hidden;
+  box-shadow: inset 1px 1px 0 #aaa;
+}
+
+.detail-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.detail-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.detail-gallery .detail-image { aspect-ratio: 1; margin: 0; }
+
+.back-btn {
+  background: var(--button);
+  border-top: 1px solid var(--window-light);
+  border-left: 1px solid var(--window-light);
+  border-right: 1px solid var(--window-darker);
+  border-bottom: 1px solid var(--window-darker);
+  padding: 6px 14px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 24px;
+  display: inline-block;
+}
+
+.back-btn:active {
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+}
+
+/* ============================================================
+   TASKBAR (bottom of screen)
+   ============================================================ */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: var(--window);
+  border-top: 2px solid var(--window-light);
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 4px;
+  z-index: 100;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 12px;
+}
+
+.start-btn {
+  background: var(--button);
+  border-top: 1px solid var(--window-light);
+  border-left: 1px solid var(--window-light);
+  border-right: 1px solid var(--window-darker);
+  border-bottom: 1px solid var(--window-darker);
+  padding: 4px 10px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.start-btn:active {
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+}
+
+.start-flag {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background:
+    linear-gradient(135deg, #ff0000 0%, #ff0000 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, #00ff00 50%),
+    linear-gradient(45deg, #ffff00 0%, #ffff00 50%, transparent 50%),
+    linear-gradient(45deg, transparent 50%, #0000ff 50%);
+  background-size: 50% 50%;
+  background-position: top left, top right, bottom left, bottom right;
+  background-repeat: no-repeat;
+}
+
+.task-tabs {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+  margin-left: 6px;
+}
+
+.task-tab {
+  background: var(--button);
+  border-top: 1px solid var(--window-light);
+  border-left: 1px solid var(--window-light);
+  border-right: 1px solid var(--window-darker);
+  border-bottom: 1px solid var(--window-darker);
+  padding: 3px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 120px;
+}
+
+.task-tab.active {
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  background: #b0b0b0;
+}
+
+.tray {
+  background: var(--window);
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  padding: 4px 10px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tray-icon {
+  font-size: 14px;
+}
+
+/* ============================================================
+   PIXELATED ICONS (CSS-drawn)
+   ============================================================ */
+.icon-computer { background: #c3c3c3; }
+.icon-folder { color: #ffcc00; }
+.icon-document { color: #fff; }
+.icon-mail { color: #ddd; }
+.icon-trash { color: #888; }
+
+/* dialog-style sections */
+.dialog-section {
+  background: var(--window);
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.dialog-section h3 {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, var(--titlebar) 0%, #1084d0 100%);
+  color: white;
+  padding: 3px 8px;
+  margin: -16px -16px 12px -16px;
+}
+
+/* Selection style for retro look */
+::selection {
+  background: var(--titlebar);
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<!-- =====================================================
+     DESKTOP ICONS (left side)
+     ===================================================== -->
+<div class="desktop-icons">
+  <a class="desktop-icon" onclick="showPage('home')">
+    <div class="icon-img">🖥️</div>
+    <span>My Computer</span>
+  </a>
+  <a class="desktop-icon" onclick="showPage('projects')">
+    <div class="icon-img">📁</div>
+    <span>Projects</span>
+  </a>
+  <a class="desktop-icon" onclick="showPage('emmaakt')">
+    <div class="icon-img">🎨</div>
+    <span>Em.maakt</span>
+  </a>
+  <a class="desktop-icon" onclick="showPage('others')">
+    <div class="icon-img">📂</div>
+    <span>Others</span>
+  </a>
+  <a class="desktop-icon" onclick="showPage('contact')">
+    <div class="icon-img">✉️</div>
+    <span>Contact</span>
+  </a>
+  <a class="desktop-icon" href="#" onclick="event.preventDefault(); alert('Recycle Bin is empty.');">
+    <div class="icon-img">🗑️</div>
+    <span>Recycle Bin</span>
+  </a>
+</div>
+
+<!-- =====================================================
+     HOME PAGE
+     ===================================================== -->
+<div class="page active" id="home">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">🖥️</span>
+        <span>Emma Schreinemacher — Portfolio</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn">×</div>
+      </div>
+    </div>
+
+    <div class="menubar">
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+      <button class="toolbar-btn" onclick="showPage('projects')">📁 Projects</button>
+      <button class="toolbar-btn" onclick="showPage('emmaakt')">🎨 Em.maakt</button>
+      <button class="toolbar-btn" onclick="showPage('others')">📂 Others</button>
+      <button class="toolbar-btn" onclick="showPage('contact')">✉️ Contact</button>
+    </div>
+
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\index.html" readonly>
+    </div>
+
+    <div class="content">
+      <div class="hero-grid">
+        <!-- PORTRAIT —
+             To use your own drawing:
+             1. Save it as 'emma.png' in the same folder as index.html
+             2. Replace the placeholder div below with: <img src="emma.png" alt="Emma">
+        -->
+        <div class="hero-portrait-frame">
+          <div class="hero-portrait">
+            Your drawing<br>goes here
+            <!-- <img src="emma.png" alt="Emma"> -->
+          </div>
+        </div>
+
+        <div class="hero-info">
+          <div class="label">Welcome to my portfolio</div>
+          <h1>Emma Schreinemacher</h1>
+          <p class="intro">Designing for a better tomorrow — through sustainability consulting, strategic design, graphic design and drawing.</p>
+          <div class="status-row">Available for collaborations &amp; commissions</div>
+          <p style="font-size: 13px; color: #444;">📍 2nd year SPD student · TU Delft</p>
+        </div>
+      </div>
+
+      <h2 class="win-section">My Work</h2>
+      <p style="font-size: 14px; margin-bottom: 12px; font-family: 'Pixelify Sans', sans-serif;">Pick a folder to explore.</p>
+
+      <div class="folder-grid">
+        <a class="folder-card" onclick="showPage('projects')">
+          <div class="folder-icon"></div>
+          <h3>Projects</h3>
+          <p>Sustainability consulting &amp; strategic design — work from TU Delft and beyond.</p>
+        </a>
+
+        <a class="folder-card" onclick="showPage('emmaakt')">
+          <div class="folder-icon"></div>
+          <h3>Em.maakt</h3>
+          <p>My drawing practice — illustrations, cards and personal commissions.</p>
+        </a>
+
+        <a class="folder-card" onclick="showPage('others')">
+          <div class="folder-icon"></div>
+          <h3>Others</h3>
+          <p>Writing, side projects and pieces that don't fit a single category.</p>
+        </a>
+      </div>
+
+      <div class="dialog-section">
+        <h3>About Me</h3>
+        <p style="font-size: 14px; line-height: 1.6; font-family: 'Pixelify Sans', sans-serif;">
+          Hi! I'm Emma. I'm currently in my second year of Strategic Product Design at TU Delft, where I focus on the intersection of sustainability, strategy and visual communication. On the side, I draw under the name Em.maakt — small commissions, birthday cards, and things I make for fun.
+        </p>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">3 folder(s)</div>
+      <div class="cell small">💾 Disk: free</div>
+      <div class="cell small">🌐 Online</div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     PROJECTS PAGE
+     ===================================================== -->
+<div class="page" id="projects">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">📁</span>
+        <span>Projects</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('home')">×</div>
+      </div>
+    </div>
+
+    <div class="menubar">
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+    </div>
+
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\Projects" readonly>
+    </div>
+
+    <div class="content">
+      <h1 style="font-family: 'DM Serif Display', serif; font-size: 40px; font-weight: 400; margin-bottom: 8px;">Projects</h1>
+      <p style="font-family: 'Pixelify Sans', sans-serif; font-size: 14px; margin-bottom: 24px;">Sustainability consulting, strategic design, and graphic design work.</p>
+
+      <div class="file-grid">
+        <a class="file-item" onclick="showPage('project-1')">
+          <div class="file-thumb"><div class="placeholder">📄</div></div>
+          <div class="file-name">Project Name 1</div>
+          <div class="file-meta">Sustainability · 2025</div>
+        </a>
+        <a class="file-item" onclick="showPage('project-2')">
+          <div class="file-thumb"><div class="placeholder">📄</div></div>
+          <div class="file-name">Project Name 2</div>
+          <div class="file-meta">Strategic · 2025</div>
+        </a>
+        <a class="file-item" onclick="showPage('project-3')">
+          <div class="file-thumb"><div class="placeholder">📄</div></div>
+          <div class="file-name">Project Name 3</div>
+          <div class="file-meta">Graphic · 2024</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">3 object(s)</div>
+      <div class="cell small">📁 Projects</div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     EM.MAAKT PAGE
+     ===================================================== -->
+<div class="page" id="emmaakt">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">🎨</span>
+        <span>Em.maakt</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('home')">×</div>
+      </div>
+    </div>
+
+    <div class="menubar">
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+    </div>
+
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\Em.maakt" readonly>
+    </div>
+
+    <div class="content">
+      <h1 style="font-family: 'DM Serif Display', serif; font-size: 40px; font-weight: 400; margin-bottom: 8px;">Em.maakt</h1>
+      <p style="font-family: 'Pixelify Sans', sans-serif; font-size: 14px; margin-bottom: 24px;">Drawings, illustrations and small commissions.</p>
+
+      <div class="file-grid">
+        <a class="file-item" onclick="showPage('drawing-1')">
+          <div class="file-thumb"><div class="placeholder">🖼️</div></div>
+          <div class="file-name">Pado op de Juul</div>
+          <div class="file-meta">2025</div>
+        </a>
+        <a class="file-item" onclick="showPage('drawing-2')">
+          <div class="file-thumb"><div class="placeholder">🖼️</div></div>
+          <div class="file-name">Drawing 2</div>
+          <div class="file-meta">2025</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">2 object(s)</div>
+      <div class="cell small">🎨 Em.maakt</div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     OTHERS PAGE
+     ===================================================== -->
+<div class="page" id="others">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">📂</span>
+        <span>Others</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('home')">×</div>
+      </div>
+    </div>
+
+    <div class="menubar">
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+    </div>
+
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\Others" readonly>
+    </div>
+
+    <div class="content">
+      <h1 style="font-family: 'DM Serif Display', serif; font-size: 40px; font-weight: 400; margin-bottom: 8px;">Others</h1>
+      <p style="font-family: 'Pixelify Sans', sans-serif; font-size: 14px; margin-bottom: 24px;">Side projects, writing, and miscellaneous pieces.</p>
+
+      <div class="file-grid">
+        <a class="file-item" onclick="showPage('other-1')">
+          <div class="file-thumb"><div class="placeholder">📝</div></div>
+          <div class="file-name">Something Else</div>
+          <div class="file-meta">Writing · 2024</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">1 object(s)</div>
+      <div class="cell small">📂 Others</div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     CONTACT PAGE
+     ===================================================== -->
+<div class="page" id="contact">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">✉️</span>
+        <span>Contact</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('home')">×</div>
+      </div>
+    </div>
+
+    <div class="menubar">
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+    </div>
+
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\Contact" readonly>
+    </div>
+
+    <div class="content">
+      <h1 style="font-family: 'DM Serif Display', serif; font-size: 48px; font-weight: 400; margin-bottom: 16px;">Let's Work Together</h1>
+      <p style="font-family: 'Pixelify Sans', sans-serif; font-size: 15px; line-height: 1.6; margin-bottom: 24px; max-width: 600px;">
+        Got a project in mind? I'd love to hear about it. Reach out to discuss your ideas, get a quote, or just say hi.
+      </p>
+
+      <div class="status-row" style="margin-bottom: 32px;">Available for hire</div>
+
+      <a href="mailto:emma@example.com" class="email-link">emma@example.com</a>
+
+      <div class="dialog-section" style="margin-top: 32px; max-width: 500px;">
+        <h3>Find me elsewhere</h3>
+        <p style="font-family: 'Pixelify Sans', sans-serif; font-size: 14px; line-height: 1.8;">
+          📷 Instagram: <a href="#" target="_blank">@em.maakt</a><br>
+          💼 LinkedIn: <a href="#" target="_blank">Emma Schreinemacher</a><br>
+          🎓 TU Delft: SPD program
+        </p>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">Ready</div>
+      <div class="cell small">✉️ Contact</div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     INDIVIDUAL PROJECT PAGES
+     Copy these blocks to add more projects.
+     ===================================================== -->
+
+<!-- PROJECT 1 -->
+<div class="page" id="project-1">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">📄</span>
+        <span>Project Name 1 — Properties</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('projects')">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+    </div>
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Projects</button>
+    </div>
+
+    <div class="content project-detail">
+      <h1>Project Name 1</h1>
+
+      <div class="detail-meta">
+        <div><strong>Discipline:</strong> Sustainability</div>
+        <div><strong>Year:</strong> 2025</div>
+        <div><strong>Context:</strong> TU Delft</div>
+        <div><strong>Role:</strong> Designer / Researcher</div>
+      </div>
+
+      <p>Write here about the project. Start with a short intro: what was the brief, what was the challenge, who was it for. Keep it readable and clear.</p>
+
+      <div class="detail-image">Hero image goes here</div>
+      <!-- replace with: <img src="project1.jpg" alt=""> -->
+
+      <h2>The Process</h2>
+      <p>Describe your process, methodology, or what you learned along the way. Add as many paragraphs as you need.</p>
+
+      <div class="detail-gallery">
+        <div class="detail-image">Image 1</div>
+        <div class="detail-image">Image 2</div>
+      </div>
+
+      <h2>Outcome</h2>
+      <p>Wrap it up — what was the result, what did you learn, what would you do differently?</p>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">Project loaded</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT 2 -->
+<div class="page" id="project-2">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">📄</span>
+        <span>Project Name 2 — Properties</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('projects')">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+    </div>
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Projects</button>
+    </div>
+
+    <div class="content project-detail">
+      <h1>Project Name 2</h1>
+
+      <div class="detail-meta">
+        <div><strong>Discipline:</strong> Strategic Design</div>
+        <div><strong>Year:</strong> 2025</div>
+        <div><strong>Context:</strong> TU Delft</div>
+        <div><strong>Type:</strong> Group project</div>
+      </div>
+
+      <p>A short intro to the project.</p>
+
+      <div class="detail-gallery">
+        <div class="detail-image">Image 1</div>
+        <div class="detail-image">Image 2</div>
+        <div class="detail-image">Image 3</div>
+        <div class="detail-image">Image 4</div>
+      </div>
+
+      <p>More context after the gallery.</p>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">Project loaded</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT 3 -->
+<div class="page" id="project-3">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">📄</span>
+        <span>Project Name 3 — Properties</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('projects')">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+    </div>
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Projects</button>
+    </div>
+
+    <div class="content project-detail">
+      <h1>Project Name 3</h1>
+
+      <div class="detail-meta">
+        <div><strong>Discipline:</strong> Graphic Design</div>
+        <div><strong>Year:</strong> 2024</div>
+        <div><strong>Client:</strong> Personal</div>
+      </div>
+
+      <p>Story-style intro paragraph.</p>
+      <div class="detail-image">Image 1</div>
+      <p>More context here, between images.</p>
+      <div class="detail-image">Image 2</div>
+
+      <h2>Outcome</h2>
+      <p>What was the final result?</p>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">Project loaded</div>
+    </div>
+  </div>
+</div>
+
+<!-- DRAWING 1 -->
+<div class="page" id="drawing-1">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">🖼️</span>
+        <span>Pado op de Juul</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('emmaakt')">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+    </div>
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('emmaakt')">⬅ Back to Em.maakt</button>
+    </div>
+
+    <div class="content project-detail">
+      <h1>Pado op de Juul</h1>
+
+      <div class="detail-meta">
+        <div><strong>Type:</strong> Birthday card</div>
+        <div><strong>Year:</strong> 2025</div>
+        <div><strong>Medium:</strong> Hand drawing</div>
+      </div>
+
+      <div class="detail-image">Drawing</div>
+
+      <p>Tell the story behind this drawing — for whom, why, what it represents.</p>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">Image loaded</div>
+    </div>
+  </div>
+</div>
+
+<!-- DRAWING 2 -->
+<div class="page" id="drawing-2">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">🖼️</span>
+        <span>Drawing 2</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('emmaakt')">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+    </div>
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('emmaakt')">⬅ Back to Em.maakt</button>
+    </div>
+
+    <div class="content project-detail">
+      <h1>Drawing 2</h1>
+      <div class="detail-meta">
+        <div><strong>Type:</strong> Illustration</div>
+        <div><strong>Year:</strong> 2025</div>
+      </div>
+      <div class="detail-image">Drawing</div>
+      <p>Description of this drawing.</p>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">Image loaded</div>
+    </div>
+  </div>
+</div>
+
+<!-- OTHER 1 -->
+<div class="page" id="other-1">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">📝</span>
+        <span>Something Else</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('others')">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+    </div>
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('others')">⬅ Back to Others</button>
+    </div>
+
+    <div class="content project-detail">
+      <h1>Something Else</h1>
+      <div class="detail-meta">
+        <div><strong>Type:</strong> Writing</div>
+        <div><strong>Year:</strong> 2024</div>
+      </div>
+      <p>Description of this 'other' thing.</p>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">Document loaded</div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     TASKBAR (always visible at the bottom)
+     ===================================================== -->
+<div class="taskbar">
+  <div class="start-btn" onclick="showPage('home')">
+    <span class="start-flag"></span>
+    <span>Start</span>
+  </div>
+  <div class="task-tabs">
+    <div class="task-tab active" id="task-current">📁 Portfolio</div>
+  </div>
+  <div class="tray">
+    <span class="tray-icon">🔊</span>
+    <span class="tray-icon">📅</span>
+    <span id="clock">12:00 PM</span>
+  </div>
+</div>
+
+<!-- =====================================================
+     SCRIPT
+     ===================================================== -->
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = document.getElementById(id);
+  if (page) {
+    page.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.pushState(null, '', '#' + id);
+
+    // update task tab name
+    const labels = {
+      'home': '🖥️ My Computer',
+      'projects': '📁 Projects',
+      'emmaakt': '🎨 Em.maakt',
+      'others': '📂 Others',
+      'contact': '✉️ Contact'
+    };
+    const label = labels[id] || '📄 ' + page.querySelector('.titlebar-text span:last-child')?.textContent || 'Window';
+    document.getElementById('task-current').textContent = label;
+  }
+}
+
+// Live clock in taskbar
+function updateClock() {
+  const now = new Date();
+  let h = now.getHours();
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  document.getElementById('clock').textContent = `${h}:${m} ${ampm}`;
+}
+updateClock();
+setInterval(updateClock, 30000);
+
+// Hash navigation
+window.addEventListener('load', () => {
+  const hash = window.location.hash.slice(1);
+  if (hash && document.getElementById(hash)) showPage(hash);
+});
+
+window.addEventListener('popstate', () => {
+  const hash = window.location.hash.slice(1) || 'home';
+  if (document.getElementById(hash)) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(hash).classList.add('active');
+  }
+});
+</script>
+
+</body>
+</html>
