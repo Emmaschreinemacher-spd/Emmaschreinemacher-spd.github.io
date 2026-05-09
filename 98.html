@@ -15,7 +15,7 @@
    COLORS — Win 98 desktop palette
    ============================================================ */
 :root {
-  --desktop: #008080;          /* iconic teal desktop */
+  --desktop: #9fd8e8;          /* iconic teal desktop */
   --window: #c3c3c3;           /* window grey */
   --window-light: #ffffff;     /* light bevel */
   --window-dark: #808080;      /* dark bevel */
@@ -42,10 +42,11 @@ html, body {
 }
 
 body {
-  background: var(--desktop);
-  background-image:
-    linear-gradient(rgba(0,0,0,0.03) 50%, transparent 50%),
-    radial-gradient(ellipse at center, #009999 0%, #006666 100%);
+  background: #9fd8e8;
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
   background-size: 100% 3px, 100% 100%;
   overflow-x: hidden;
   min-height: 100vh;
@@ -112,10 +113,11 @@ a { color: var(--link); }
     inset -1px -1px 0 var(--window-dark),
     inset 1px 1px 0 var(--window),
     2px 2px 0 var(--window-darker);
+
+  width: 80vw;
+  max-width: 1100px;
+  min-height: 650px;
   margin: 40px auto;
-  max-width: 920px;
-  width: calc(100% - 140px); /* leave space for desktop icons */
-  margin-left: 120px;
 }
 
 @media (max-width: 800px) {
@@ -278,8 +280,8 @@ a { color: var(--link); }
   border-right: 1px solid var(--window-light);
   border-bottom: 1px solid var(--window-light);
   margin: 4px;
-  padding: 32px;
-  min-height: 400px;
+  padding: 40px;
+  min-height: 560px;
 }
 
 /* STATUS BAR */
