@@ -1359,7 +1359,7 @@ p.section-intro {
       <span class="nav-icon">✉️</span>
       <span>Contact</span>
     </a>
-    <a class="nav-btn resume" href="emma-cv.pdf" target="_blank">
+    <a class="nav-btn resume" href="emma-cv.pdf" target="_blank" onclick="playClickSound()">
       <span class="nav-icon">📄</span>
       <span>Resume</span>
     </a>
@@ -1373,7 +1373,16 @@ p.section-intro {
 </div>
 
 <script>
+const clickSound = new Audio('https://actions.google.com/sounds/v1/cartoon/pop.ogg');
+clickSound.volume = 0.25;
+
+function playClickSound() {
+  clickSound.currentTime = 0;
+  clickSound.play().catch(() => {});
+}
+  
 function showPage(id) {
+    playClickSound();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const page = document.getElementById(id);
 
