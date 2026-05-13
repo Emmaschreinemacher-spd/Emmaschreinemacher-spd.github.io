@@ -116,8 +116,9 @@ a { color: var(--link); }
     2px 2px 0 var(--window-darker);
 
   position: absolute;
-  top: 40px;
-  left: 120px;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 920px;
   max-width: calc(100vw - 140px);
   min-width: 320px;
@@ -1377,6 +1378,14 @@ function showPage(id) {
   const page = document.getElementById(id);
   if (page) {
     page.classList.add('active');
+
+    const win = page.querySelector('.window');
+    if (win) {
+      win.style.left = '50%';
+      win.style.top = '60px';
+      win.style.transform = 'translateX(-50%)';
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
     history.pushState(null, '', '#' + id);
 
@@ -1439,6 +1448,10 @@ document.querySelectorAll('.window').forEach(win => {
     startY = evt.clientY;
 
     const rect = win.getBoundingClientRect();
+    win.style.transform = 'none';
+    win.style.left = rect.left + 'px';
+    win.style.top = rect.top + window.scrollY + 'px';
+
     startLeft = rect.left;
     startTop = rect.top + window.scrollY;
 
