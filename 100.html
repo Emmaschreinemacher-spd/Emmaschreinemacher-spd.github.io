@@ -1376,6 +1376,7 @@ p.section-intro {
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const page = document.getElementById(id);
+
   if (page) {
     page.classList.add('active');
 
@@ -1389,7 +1390,6 @@ function showPage(id) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     history.pushState(null, '', '#' + id);
 
-    // Update which nav button is active
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     const navMap = {
       'home': 0, 'projects': 1, 'emmaakt': 2, 'others': 3, 'contact': 4
