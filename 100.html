@@ -798,9 +798,9 @@ p.section-intro {
     <div class="icon-img">📂</div>
     <span>Others</span>
   </a>
-  <a class="desktop-icon" onclick="showPage('contact')">
-    <div class="icon-img">✉️</div>
-    <span>Contact</span>
+   <a class="desktop-icon" onclick="toggleMusic()">
+    <div class="icon-img">💿</div>
+    <span>Music</span>
   </a>
   <a class="desktop-icon" href="emma-cv.pdf" target="_blank">
     <div class="icon-img">📄</div>
@@ -1373,12 +1373,37 @@ p.section-intro {
 </div>
 
 <script>
-const clickSound = new Audio('https://actions.google.com/sounds/v1/cartoon/pop.ogg');
-clickSound.volume = 0.25;
+  const bgMusic = new Audio('music.mp3');
+bgMusic.loop = true;
+bgMusic.volume = 0.25;
 
+let musicPlaying = false;
+
+function toggleMusic() {
+  if (musicPlaying) {
+    bgMusic.pause();
+    musicPlaying = false;
+  } else {
+    bgMusic.play().catch(() => {});
+    musicPlaying = true;
+  }
+}
 function playClickSound() {
-  clickSound.currentTime = 0;
-  clickSound.play().catch(() => {});
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const oscillator = audioCtx.createOscillator();
+  const gainNode = audioCtx.createGain();
+
+  oscillator.type = 'square';
+  oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+
+  gainNode.gain.setValueAtTime(0.12, audioCtx.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+
+  oscillator.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+
+  oscillator.start();
+  oscillator.stop(audioCtx.currentTime + 0.04);
 }
   
 function showPage(id) {
