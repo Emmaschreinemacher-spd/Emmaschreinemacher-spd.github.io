@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emma '98 — Portfolio</title>
-<meta name="description" content="Portfolio of Emma Schreinemacher — sustainability consulting, strategic design, graphic design and drawing.">
+<meta name="description" content="Portfolio of Emma Schreinemacher — strategic design, sustainability, visual storytelling and illustration.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +34,11 @@
   --font-pixel: 'Press Start 2P', 'Courier New', monospace;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 html, body {
   height: 100%;
@@ -56,8 +60,11 @@ body {
   padding-bottom: 70px;
 }
 
-a { color: var(--link); }
+a {
+  color: var(--link);
+}
 
+/* DESKTOP ICONS */
 .desktop-icons {
   position: fixed;
   top: 16px;
@@ -99,6 +106,7 @@ a { color: var(--link); }
   font-size: 30px;
 }
 
+/* WINDOW */
 .window {
   background: var(--window);
   border-top: 2px solid var(--window-light);
@@ -125,7 +133,9 @@ a { color: var(--link); }
   flex-direction: column;
 }
 
-.window.dragging { user-select: none; }
+.window.dragging {
+  user-select: none;
+}
 
 @media (max-width: 800px) {
   .window {
@@ -134,9 +144,13 @@ a { color: var(--link); }
     width: calc(100vw - 20px) !important;
     max-width: calc(100vw - 20px);
   }
-  .desktop-icons { display: none; }
+
+  .desktop-icons {
+    display: none;
+  }
 }
 
+/* TITLEBAR */
 .titlebar {
   background: linear-gradient(90deg, var(--titlebar) 0%, #1084d0 100%);
   color: var(--titlebar-text);
@@ -159,9 +173,14 @@ a { color: var(--link); }
   padding-left: 4px;
 }
 
-.titlebar-icon { font-size: 14px; }
+.titlebar-icon {
+  font-size: 14px;
+}
 
-.titlebar-buttons { display: flex; gap: 2px; }
+.titlebar-buttons {
+  display: flex;
+  gap: 2px;
+}
 
 .tb-btn {
   width: 18px;
@@ -183,6 +202,7 @@ a { color: var(--link); }
   font-weight: 700;
 }
 
+/* MENUBAR */
 .menubar {
   display: flex;
   background: var(--window);
@@ -194,10 +214,21 @@ a { color: var(--link); }
   flex-shrink: 0;
 }
 
-.menubar span { padding: 2px 8px; cursor: pointer; }
-.menubar span:hover { background: var(--highlight); color: var(--highlight-text); }
-.menubar span u { text-decoration: underline; }
+.menubar span {
+  padding: 2px 8px;
+  cursor: pointer;
+}
 
+.menubar span:hover {
+  background: var(--highlight);
+  color: var(--highlight-text);
+}
+
+.menubar span u {
+  text-decoration: underline;
+}
+
+/* TOOLBAR */
 .toolbar {
   background: var(--window);
   padding: 4px 6px;
@@ -231,6 +262,7 @@ a { color: var(--link); }
   border-bottom: 1px solid var(--window-light);
 }
 
+/* ADDRESS BAR */
 .addressbar {
   background: var(--window);
   padding: 4px 6px;
@@ -242,7 +274,9 @@ a { color: var(--link); }
   flex-shrink: 0;
 }
 
-.addressbar label { padding-left: 4px; }
+.addressbar label {
+  padding-left: 4px;
+}
 
 .addressbar input {
   flex: 1;
@@ -257,6 +291,7 @@ a { color: var(--link); }
   pointer-events: none;
 }
 
+/* CONTENT */
 .content {
   background: white;
   border-top: 1px solid var(--window-darker);
@@ -270,6 +305,7 @@ a { color: var(--link); }
   overflow-y: auto;
 }
 
+/* STATUS BAR */
 .statusbar {
   background: var(--window);
   padding: 3px 6px;
@@ -291,11 +327,20 @@ a { color: var(--link); }
   flex: 1;
 }
 
-.statusbar .cell.small { flex: 0 0 auto; }
+.statusbar .cell.small {
+  flex: 0 0 auto;
+}
 
-.page { display: none; }
-.page.active { display: block; }
+/* PAGE SYSTEM */
+.page {
+  display: none;
+}
 
+.page.active {
+  display: block;
+}
+
+/* HOME */
 .hero-grid {
   display: grid;
   grid-template-columns: 200px 1fr;
@@ -329,9 +374,15 @@ a { color: var(--link); }
   overflow: hidden;
 }
 
-.hero-portrait img { width: 100%; height: 100%; object-fit: cover; }
+.hero-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-.hero-info { font-family: var(--font-body); }
+.hero-info {
+  font-family: var(--font-body);
+}
 
 .hero-info .label {
   font-family: var(--font-pixel);
@@ -357,7 +408,7 @@ a { color: var(--link); }
   line-height: 1.6;
   margin-bottom: 20px;
   font-family: var(--font-body);
-  max-width: 560px;
+  max-width: 580px;
 }
 
 .status-row {
@@ -372,7 +423,10 @@ a { color: var(--link); }
   font-family: var(--font-ui);
 }
 
-.status-row::before { content: '✦'; color: #cc0000; }
+.status-row::before {
+  content: '✦';
+  color: #cc0000;
+}
 
 .email-link {
   display: inline-block;
@@ -400,6 +454,7 @@ p.section-intro {
   color: #444;
 }
 
+/* FILE GRID */
 .file-grid {
   display: grid;
   grid-template-columns: repeat(4, 145px);
@@ -439,7 +494,11 @@ p.section-intro {
   box-shadow: inset 1px 1px 0 var(--window-darker);
 }
 
-.file-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.file-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .file-thumb .placeholder {
   font-family: var(--font-ui);
@@ -462,15 +521,28 @@ p.section-intro {
 }
 
 @media (max-width: 700px) {
-  .file-grid { grid-template-columns: repeat(2, 140px); }
-  .file-thumb { width: 140px; height: 140px; }
+  .file-grid {
+    grid-template-columns: repeat(2, 140px);
+  }
+
+  .file-thumb {
+    width: 140px;
+    height: 140px;
+  }
 }
 
 @media (max-width: 450px) {
-  .file-grid { grid-template-columns: 1fr; }
-  .file-thumb { width: 160px; height: 160px; }
+  .file-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .file-thumb {
+    width: 160px;
+    height: 160px;
+  }
 }
 
+/* FOLDER CARDS */
 .folder-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -479,9 +551,17 @@ p.section-intro {
 }
 
 @media (max-width: 600px) {
-  .folder-grid { grid-template-columns: 1fr; }
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-portrait-frame { max-width: 200px; }
+  .folder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-portrait-frame {
+    max-width: 200px;
+  }
 }
 
 .folder-card {
@@ -500,7 +580,9 @@ p.section-intro {
   transition: background 0.15s;
 }
 
-.folder-card:hover { background: #c5e0ef; }
+.folder-card:hover {
+  background: #c5e0ef;
+}
 
 .folder-icon {
   width: 48px;
@@ -539,6 +621,7 @@ p.section-intro {
   font-family: var(--font-body);
 }
 
+/* PROJECT DETAIL */
 .project-detail h1 {
   font-family: var(--font-title);
   font-size: 36px;
@@ -558,7 +641,9 @@ p.section-intro {
   font-family: var(--font-ui);
 }
 
-.detail-meta strong { font-weight: 700; }
+.detail-meta strong {
+  font-weight: 700;
+}
 
 .project-detail p {
   font-size: 14px;
@@ -597,9 +682,11 @@ p.section-intro {
   display: block;
 }
 
-.detail-image.empty { aspect-ratio: 16 / 10; }
+.detail-image.empty {
+  aspect-ratio: 16 / 10;
+}
 
-/* MUSIC PLAYER */
+/* MUSIC PLAYER ONLY — NO WHITE TAB */
 .music-floating-window {
   width: 380px;
   max-width: 380px;
@@ -633,17 +720,17 @@ p.section-intro {
 
 .music-info {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1.6fr;
   gap: 12px;
-  align-items: center;
+  align-items: start;
   margin-bottom: 12px;
 }
 
 .music-artist,
 .music-title {
   font-family: var(--font-pixel);
-  font-size: 9px;
-  line-height: 1.5;
+  font-size: 7px;
+  line-height: 1.6;
 }
 
 .music-title {
@@ -679,8 +766,8 @@ p.section-intro {
 
 .music-seek {
   flex: 1;
-  accent-color: var(--titlebar);
   cursor: pointer;
+  accent-color: var(--titlebar);
 }
 
 .music-nav-buttons {
@@ -731,6 +818,7 @@ p.section-intro {
   color: var(--highlight-text);
 }
 
+/* TASKBAR */
 .taskbar {
   position: fixed;
   bottom: 0;
@@ -787,8 +875,13 @@ p.section-intro {
   scrollbar-width: thin;
 }
 
-.bottom-nav::-webkit-scrollbar { height: 4px; }
-.bottom-nav::-webkit-scrollbar-thumb { background: var(--window-dark); }
+.bottom-nav::-webkit-scrollbar {
+  height: 4px;
+}
+
+.bottom-nav::-webkit-scrollbar-thumb {
+  background: var(--window-dark);
+}
 
 .nav-btn {
   background: var(--button);
@@ -810,7 +903,9 @@ p.section-intro {
   min-height: 40px;
 }
 
-.nav-btn:hover { background: #d3d3d3; }
+.nav-btn:hover {
+  background: #d3d3d3;
+}
 
 .nav-btn:active,
 .nav-btn.active {
@@ -821,7 +916,9 @@ p.section-intro {
   background: #b0b0b0;
 }
 
-.nav-btn .nav-icon { font-size: 16px; }
+.nav-btn .nav-icon {
+  font-size: 16px;
+}
 
 .nav-btn.resume {
   background: #ffeb99;
@@ -831,7 +928,9 @@ p.section-intro {
   border-bottom-color: #cca300;
 }
 
-.nav-btn.resume:hover { background: #ffe066; }
+.nav-btn.resume:hover {
+  background: #ffe066;
+}
 
 .tray {
   background: var(--window);
@@ -875,49 +974,72 @@ p.section-intro {
   font-family: var(--font-body);
 }
 
-::selection { background: var(--titlebar); color: white; }
+::selection {
+  background: var(--titlebar);
+  color: white;
+}
 
 @media (max-width: 700px) {
-  .nav-btn span:not(.nav-icon) { display: none; }
-  .nav-btn { padding: 8px 10px; }
-  .start-btn span:last-child { display: none; }
-  .tray span:not(#clock) { display: none; }
+  .nav-btn span:not(.nav-icon) {
+    display: none;
+  }
+
+  .nav-btn {
+    padding: 8px 10px;
+  }
+
+  .start-btn span:last-child {
+    display: none;
+  }
+
+  .tray span:not(#clock) {
+    display: none;
+  }
 }
 </style>
 </head>
+
 <body>
 
+<!-- DESKTOP ICONS -->
 <div class="desktop-icons">
   <a class="desktop-icon" onclick="showPage('home')">
     <div class="icon-img">🖥️</div>
     <span>My Computer</span>
   </a>
+
   <a class="desktop-icon" onclick="showPage('projects')">
     <div class="icon-img">📁</div>
     <span>Projects</span>
   </a>
+
   <a class="desktop-icon" onclick="showPage('emmaakt')">
     <div class="icon-img">🎨</div>
     <span>Em.maakt</span>
   </a>
+
   <a class="desktop-icon" onclick="showPage('others')">
     <div class="icon-img">📂</div>
     <span>Others</span>
   </a>
+
   <a class="desktop-icon" onclick="showPage('music')">
     <div class="icon-img">💿</div>
     <span>Music</span>
   </a>
+
   <a class="desktop-icon" href="emma-cv.pdf" target="_blank">
     <div class="icon-img">📄</div>
     <span>Resume</span>
   </a>
+
   <a class="desktop-icon" href="#" onclick="event.preventDefault(); alert('Recycle Bin is empty.');">
     <div class="icon-img">🗑️</div>
     <span>Recycle Bin</span>
   </a>
 </div>
 
+<!-- HOME -->
 <div class="page active" id="home">
   <div class="window">
     <div class="titlebar">
@@ -1017,6 +1139,7 @@ p.section-intro {
   </div>
 </div>
 
+<!-- PROJECTS PAGE -->
 <div class="page" id="projects">
   <div class="window">
     <div class="titlebar">
@@ -1030,13 +1153,20 @@ p.section-intro {
         <div class="tb-btn" onclick="showPage('home')">×</div>
       </div>
     </div>
+
     <div class="menubar">
-      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>G</u>o</span><span><u>H</u>elp</span>
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
     </div>
+
     <div class="toolbar">
       <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
       <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
     </div>
+
     <div class="addressbar">
       <label>Address:</label>
       <input type="text" value="C:\Portfolio\Design Projects" readonly>
@@ -1074,6 +1204,7 @@ p.section-intro {
   </div>
 </div>
 
+<!-- EM.MAAKT PAGE -->
 <div class="page" id="emmaakt">
   <div class="window">
     <div class="titlebar">
@@ -1087,13 +1218,20 @@ p.section-intro {
         <div class="tb-btn" onclick="showPage('home')">×</div>
       </div>
     </div>
+
     <div class="menubar">
-      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>G</u>o</span><span><u>H</u>elp</span>
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
     </div>
+
     <div class="toolbar">
       <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
       <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
     </div>
+
     <div class="addressbar">
       <label>Address:</label>
       <input type="text" value="C:\Portfolio\Em.maakt" readonly>
@@ -1149,6 +1287,7 @@ p.section-intro {
   </div>
 </div>
 
+<!-- OTHERS PAGE -->
 <div class="page" id="others">
   <div class="window">
     <div class="titlebar">
@@ -1162,13 +1301,20 @@ p.section-intro {
         <div class="tb-btn" onclick="showPage('home')">×</div>
       </div>
     </div>
+
     <div class="menubar">
-      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>G</u>o</span><span><u>H</u>elp</span>
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
     </div>
+
     <div class="toolbar">
       <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
       <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
     </div>
+
     <div class="addressbar">
       <label>Address:</label>
       <input type="text" value="C:\Portfolio\Others" readonly>
@@ -1194,6 +1340,7 @@ p.section-intro {
   </div>
 </div>
 
+<!-- MUSIC PAGE — ONLY GREY PLAYER WINDOW -->
 <div class="page" id="music">
   <div class="music-floating-window window">
     <div class="titlebar">
@@ -1223,7 +1370,7 @@ p.section-intro {
 
       <div class="music-info">
         <div class="music-artist" id="music-artist">Dire Straits</div>
-        <div class="music-title" id="music-title">Sultans Of Swing</div>
+        <div class="music-title" id="music-title">Dire Straits - Sultans Of Swing (Live at Wembley 1985)</div>
       </div>
 
       <div class="music-controls">
@@ -1232,12 +1379,12 @@ p.section-intro {
         <div class="music-progress-wrap">
           <span id="music-time">0:00</span>
 
-          <input 
-            type="range" 
-            id="music-seek" 
-            class="music-seek" 
-            min="0" 
-            max="100" 
+          <input
+            type="range"
+            id="music-seek"
+            class="music-seek"
+            min="0"
+            max="100"
             value="0"
             oninput="seekMusic(this.value)"
           >
@@ -1252,7 +1399,7 @@ p.section-intro {
       </div>
 
       <div class="track-list">
-        <button class="track-btn active" onclick="selectTrack(0)">1. Sultans Of Swing</button>
+        <button class="track-btn active" onclick="selectTrack(0)">1. Dire Straits - Sultans Of Swing (Live at Wembley 1985)</button>
         <button class="track-btn" onclick="selectTrack(1)">2. Song title 2</button>
         <button class="track-btn" onclick="selectTrack(2)">3. Song title 3</button>
         <button class="track-btn" onclick="selectTrack(3)">4. Song title 4</button>
@@ -1265,6 +1412,9 @@ p.section-intro {
     </div>
   </div>
 </div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="contact">
   <div class="window">
     <div class="titlebar">
       <div class="titlebar-text">
@@ -1277,13 +1427,20 @@ p.section-intro {
         <div class="tb-btn" onclick="showPage('home')">×</div>
       </div>
     </div>
+
     <div class="menubar">
-      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>G</u>o</span><span><u>H</u>elp</span>
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
     </div>
+
     <div class="toolbar">
       <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
       <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
     </div>
+
     <div class="addressbar">
       <label>Address:</label>
       <input type="text" value="C:\Portfolio\Contact" readonly>
@@ -1317,6 +1474,7 @@ p.section-intro {
   </div>
 </div>
 
+<!-- PROJECT DETAIL PAGES -->
 <div class="page" id="project-1">
   <div class="window">
     <div class="titlebar">
@@ -1381,6 +1539,7 @@ p.section-intro {
   </div>
 </div>
 
+<!-- EM.MAAKT DETAIL PAGES -->
 <div class="page" id="drawing-backpack">
   <div class="window">
     <div class="titlebar">
@@ -1519,6 +1678,7 @@ p.section-intro {
   </div>
 </div>
 
+<!-- OTHER DETAIL -->
 <div class="page" id="other-1">
   <div class="window">
     <div class="titlebar">
@@ -1539,6 +1699,7 @@ p.section-intro {
   </div>
 </div>
 
+<!-- TASKBAR -->
 <div class="taskbar">
   <div class="start-btn" onclick="showPage('home')">
     <span class="start-flag"></span>
@@ -1550,26 +1711,32 @@ p.section-intro {
       <span class="nav-icon">🏠</span>
       <span>Home</span>
     </a>
+
     <a class="nav-btn" onclick="showPage('projects')">
       <span class="nav-icon">📁</span>
       <span>Design Projects</span>
     </a>
+
     <a class="nav-btn" onclick="showPage('emmaakt')">
       <span class="nav-icon">🎨</span>
       <span>Em.maakt</span>
     </a>
+
     <a class="nav-btn" onclick="showPage('others')">
       <span class="nav-icon">📂</span>
       <span>Others</span>
     </a>
+
     <a class="nav-btn" onclick="showPage('music')">
       <span class="nav-icon">💿</span>
       <span>Music</span>
     </a>
+
     <a class="nav-btn" onclick="showPage('contact')">
       <span class="nav-icon">✉️</span>
       <span>Contact</span>
     </a>
+
     <a class="nav-btn resume" href="emma-cv.pdf" target="_blank" onclick="playClickSound()">
       <span class="nav-icon">📄</span>
       <span>Resume</span>
@@ -1586,7 +1753,7 @@ p.section-intro {
 <script>
 const playlist = [
   {
-    title: 'Sultans Of Swing',
+    title: 'Dire Straits - Sultans Of Swing (Live at Wembley 1985)',
     artist: 'Dire Straits',
     cover: 'song1.jpg',
     file: 'song1.mp3'
@@ -1633,11 +1800,17 @@ function loadTrack(index, autoplay = false) {
   const title = document.getElementById('music-title');
   const artist = document.getElementById('music-artist');
   const playBtn = document.getElementById('music-play-btn');
+  const seek = document.getElementById('music-seek');
+  const time = document.getElementById('music-time');
+  const duration = document.getElementById('music-duration');
 
   if (cover) cover.src = playlist[currentTrack].cover;
   if (title) title.textContent = playlist[currentTrack].title;
   if (artist) artist.textContent = playlist[currentTrack].artist;
   if (playBtn) playBtn.textContent = autoplay ? 'Ⅱ' : '▶';
+  if (seek) seek.value = 0;
+  if (time) time.textContent = '0:00';
+  if (duration) duration.textContent = '0:00';
 
   document.querySelectorAll('.track-btn').forEach((btn, i) => {
     btn.classList.toggle('active', i === currentTrack);
@@ -1678,17 +1851,24 @@ function previousTrack() {
   const previous = (currentTrack - 1 + playlist.length) % playlist.length;
   loadTrack(previous, true);
 }
+
 function seekMusic(value) {
   if (!isNaN(bgMusic.duration)) {
     bgMusic.currentTime = (value / 100) * bgMusic.duration;
   }
 }
+
 function formatTime(seconds) {
   if (isNaN(seconds)) return '0:00';
   const minutes = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
   return `${minutes}:${secs}`;
 }
+
+bgMusic.addEventListener('loadedmetadata', () => {
+  const duration = document.getElementById('music-duration');
+  if (duration) duration.textContent = formatTime(bgMusic.duration);
+});
 
 bgMusic.addEventListener('timeupdate', () => {
   const progress = bgMusic.duration ? (bgMusic.currentTime / bgMusic.duration) * 100 : 0;
@@ -1698,15 +1878,6 @@ bgMusic.addEventListener('timeupdate', () => {
   const duration = document.getElementById('music-duration');
 
   if (seek) seek.value = progress;
-  if (time) time.textContent = formatTime(bgMusic.currentTime);
-  if (duration) duration.textContent = formatTime(bgMusic.duration);
-});  const progress = bgMusic.duration ? (bgMusic.currentTime / bgMusic.duration) * 100 : 0;
-
-  const fill = document.getElementById('music-progress-fill');
-  const time = document.getElementById('music-time');
-  const duration = document.getElementById('music-duration');
-
-  if (fill) fill.style.width = progress + '%';
   if (time) time.textContent = formatTime(bgMusic.currentTime);
   if (duration) duration.textContent = formatTime(bgMusic.duration);
 });
@@ -1764,7 +1935,9 @@ function showPage(id) {
       'music': 4,
       'contact': 5
     };
+
     const navButtons = document.querySelectorAll('.bottom-nav .nav-btn');
+
     if (navMap[id] !== undefined && navButtons[navMap[id]]) {
       navButtons[navMap[id]].classList.add('active');
     }
@@ -1789,6 +1962,7 @@ window.addEventListener('load', () => {
   }
 
   const hash = window.location.hash.slice(1);
+
   if (hash && document.getElementById(hash)) {
     showPage(hash);
   } else {
@@ -1798,16 +1972,19 @@ window.addEventListener('load', () => {
 
 window.addEventListener('popstate', () => {
   const hash = window.location.hash.slice(1) || 'home';
+
   if (document.getElementById(hash)) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(hash).classList.add('active');
   }
 });
 
+/* DRAGGABLE WINDOWS */
 let zIndexCounter = 10;
 
 document.querySelectorAll('.window').forEach(win => {
   const titlebar = win.querySelector('.titlebar');
+
   if (!titlebar) return;
 
   let isDragging = false;
@@ -1837,6 +2014,7 @@ document.querySelectorAll('.window').forEach(win => {
 
   function onDrag(e) {
     if (!isDragging) return;
+
     const evt = e.touches ? e.touches[0] : e;
     const dx = evt.clientX - startX;
     const dy = evt.clientY - startY;
