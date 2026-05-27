@@ -600,16 +600,18 @@ p.section-intro {
 .detail-image.empty { aspect-ratio: 16 / 10; }
 
 /* MUSIC PLAYER */
-.music-player {
-  width: 360px;
-  max-width: 100%;
+.music-floating-window {
+  width: 380px;
+  max-width: 380px;
+  min-width: 320px;
+  min-height: auto;
+  resize: none;
+}
+
+.music-player-only {
   background: var(--window);
-  border-top: 2px solid var(--window-light);
-  border-left: 2px solid var(--window-light);
-  border-right: 2px solid var(--window-darker);
-  border-bottom: 2px solid var(--window-darker);
   padding: 14px;
-  margin: 0 auto;
+  font-family: var(--font-ui);
 }
 
 .music-cover {
@@ -644,7 +646,9 @@ p.section-intro {
   line-height: 1.5;
 }
 
-.music-title { text-align: right; }
+.music-title {
+  text-align: right;
+}
 
 .music-controls {
   display: grid;
@@ -673,21 +677,10 @@ p.section-intro {
   font-size: 11px;
 }
 
-.music-progress {
+.music-seek {
   flex: 1;
-  height: 4px;
-  background: white;
-  border-top: 1px solid var(--window-darker);
-  border-left: 1px solid var(--window-darker);
-  border-right: 1px solid var(--window-light);
-  border-bottom: 1px solid var(--window-light);
-  overflow: hidden;
-}
-
-.music-progress-fill {
-  height: 100%;
-  width: 0%;
-  background: var(--titlebar);
+  accent-color: var(--titlebar);
+  cursor: pointer;
 }
 
 .music-nav-buttons {
@@ -1202,7 +1195,7 @@ p.section-intro {
 </div>
 
 <div class="page" id="music">
-  <div class="window">
+  <div class="music-floating-window window">
     <div class="titlebar">
       <div class="titlebar-text">
         <span class="titlebar-icon">💿</span>
@@ -1223,65 +1216,55 @@ p.section-intro {
       <span><u>H</u>elp</span>
     </div>
 
-    <div class="toolbar">
-      <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
-      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
-    </div>
+    <div class="music-player-only">
+      <div class="music-cover">
+        <img id="music-cover-img" src="song1.jpg" alt="Dire Straits cover">
+      </div>
 
-    <div class="addressbar">
-      <label>Address:</label>
-      <input type="text" value="C:\Portfolio\Music" readonly>
-    </div>
+      <div class="music-info">
+        <div class="music-artist" id="music-artist">Dire Straits</div>
+        <div class="music-title" id="music-title">Sultans Of Swing</div>
+      </div>
 
-    <div class="content">
-      <h1 style="font-family: var(--font-title); font-size: 36px; font-weight: 400; margin-bottom: 8px;">Music</h1>
-      <p style="font-family: var(--font-body); font-size: 13px; margin-bottom: 24px;">A small playlist while scrolling through my browser.</p>
+      <div class="music-controls">
+        <button class="music-play-btn" id="music-play-btn" onclick="togglePlaylistMusic()">▶</button>
 
-      <div class="music-player">
-        <div class="music-cover">
-          <img id="music-cover-img" src="song1.jpg" alt="Song cover">
+        <div class="music-progress-wrap">
+          <span id="music-time">0:00</span>
+
+          <input 
+            type="range" 
+            id="music-seek" 
+            class="music-seek" 
+            min="0" 
+            max="100" 
+            value="0"
+            oninput="seekMusic(this.value)"
+          >
+
+          <span id="music-duration">0:00</span>
         </div>
+      </div>
 
-        <div class="music-info">
-          <div class="music-artist" id="music-artist">Artist name 1</div>
-          <div class="music-title" id="music-title">Song title 1</div>
-        </div>
+      <div class="music-nav-buttons">
+        <button onclick="previousTrack()">Previous</button>
+        <button onclick="nextTrack()">Next</button>
+      </div>
 
-        <div class="music-controls">
-          <button class="music-play-btn" id="music-play-btn" onclick="togglePlaylistMusic()">▶</button>
-
-          <div class="music-progress-wrap">
-            <span id="music-time">0:00</span>
-            <div class="music-progress">
-              <div class="music-progress-fill" id="music-progress-fill"></div>
-            </div>
-            <span id="music-duration">0:00</span>
-          </div>
-        </div>
-
-        <div class="music-nav-buttons">
-          <button onclick="previousTrack()">Previous</button>
-          <button onclick="nextTrack()">Next</button>
-        </div>
-
-        <div class="track-list">
-          <button class="track-btn active" onclick="selectTrack(0)">1. Song title 1</button>
-          <button class="track-btn" onclick="selectTrack(1)">2. Song title 2</button>
-          <button class="track-btn" onclick="selectTrack(2)">3. Song title 3</button>
-          <button class="track-btn" onclick="selectTrack(3)">4. Song title 4</button>
-          <button class="track-btn" onclick="selectTrack(4)">5. Song title 5</button>
-        </div>
+      <div class="track-list">
+        <button class="track-btn active" onclick="selectTrack(0)">1. Sultans Of Swing</button>
+        <button class="track-btn" onclick="selectTrack(1)">2. Song title 2</button>
+        <button class="track-btn" onclick="selectTrack(2)">3. Song title 3</button>
+        <button class="track-btn" onclick="selectTrack(3)">4. Song title 4</button>
+        <button class="track-btn" onclick="selectTrack(4)">5. Song title 5</button>
       </div>
     </div>
 
     <div class="statusbar">
       <div class="cell">5 object(s)</div>
-      <div class="cell small">💿 Music</div>
     </div>
   </div>
 </div>
-
-<div class="page" id="contact">
   <div class="window">
     <div class="titlebar">
       <div class="titlebar-text">
@@ -1695,7 +1678,11 @@ function previousTrack() {
   const previous = (currentTrack - 1 + playlist.length) % playlist.length;
   loadTrack(previous, true);
 }
-
+function seekMusic(value) {
+  if (!isNaN(bgMusic.duration)) {
+    bgMusic.currentTime = (value / 100) * bgMusic.duration;
+  }
+}
 function formatTime(seconds) {
   if (isNaN(seconds)) return '0:00';
   const minutes = Math.floor(seconds / 60);
@@ -1705,6 +1692,15 @@ function formatTime(seconds) {
 
 bgMusic.addEventListener('timeupdate', () => {
   const progress = bgMusic.duration ? (bgMusic.currentTime / bgMusic.duration) * 100 : 0;
+
+  const seek = document.getElementById('music-seek');
+  const time = document.getElementById('music-time');
+  const duration = document.getElementById('music-duration');
+
+  if (seek) seek.value = progress;
+  if (time) time.textContent = formatTime(bgMusic.currentTime);
+  if (duration) duration.textContent = formatTime(bgMusic.duration);
+});  const progress = bgMusic.duration ? (bgMusic.currentTime / bgMusic.duration) * 100 : 0;
 
   const fill = document.getElementById('music-progress-fill');
   const time = document.getElementById('music-time');
