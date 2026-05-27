@@ -1002,7 +1002,89 @@ p.section-intro {
   line-height: 1.6;
   font-family: var(--font-body);
 }
+/* PASSWORD SCREEN */
+#password-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--desktop);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 50%, transparent 50%),
+    radial-gradient(ellipse at center, var(--desktop) 0%, var(--desktop-2) 100%);
+  background-size: 100% 3px, 100% 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+}
 
+.password-window {
+  width: 360px;
+  background: var(--window);
+  border-top: 2px solid var(--window-light);
+  border-left: 2px solid var(--window-light);
+  border-right: 2px solid var(--window-darker);
+  border-bottom: 2px solid var(--window-darker);
+  box-shadow:
+    inset -1px -1px 0 var(--window-dark),
+    inset 1px 1px 0 var(--window),
+    2px 2px 0 var(--window-darker);
+}
+
+.password-content {
+  padding: 22px;
+}
+
+.password-content h2 {
+  font-family: var(--font-title);
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.password-content p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.password-content input {
+  width: 100%;
+  padding: 7px;
+  margin-bottom: 12px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+}
+
+.password-content button {
+  background: var(--button);
+  border-top: 2px solid var(--window-light);
+  border-left: 2px solid var(--window-light);
+  border-right: 2px solid var(--window-darker);
+  border-bottom: 2px solid var(--window-darker);
+  padding: 7px 16px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-weight: 700;
+}
+
+.password-content button:active {
+  border-top: 2px solid var(--window-darker);
+  border-left: 2px solid var(--window-darker);
+  border-right: 2px solid var(--window-light);
+  border-bottom: 2px solid var(--window-light);
+}
+
+#password-error {
+  color: #b00000;
+  font-size: 12px;
+  margin-top: 10px;
+  display: none;
+}
 ::selection {
   background: var(--titlebar);
   color: white;
@@ -1029,6 +1111,38 @@ p.section-intro {
 </head>
 
 <body>
+  <!-- PASSWORD SCREEN -->
+<div id="password-screen">
+  <div class="password-window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">🔐</span>
+        <span>Protected Portfolio</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn">×</div>
+      </div>
+    </div>
+
+    <div class="password-content">
+      <h2>Enter password</h2>
+      <p>This portfolio is password protected. Please enter the password to continue.</p>
+
+      <input 
+        type="password" 
+        id="password-input" 
+        placeholder="Password"
+        onkeydown="if(event.key === 'Enter') checkPassword()"
+      >
+
+      <button onclick="checkPassword()">Enter</button>
+
+      <div id="password-error">Incorrect password. Please try again.</div>
+    </div>
+  </div>
+</div>
 
 <!-- DESKTOP ICONS -->
 <div class="desktop-icons">
@@ -2172,6 +2286,33 @@ document.querySelectorAll('.window').forEach(win => {
 
   document.addEventListener('mouseup', endDrag);
   document.addEventListener('touchend', endDrag);
+});
+  function checkPassword() {
+  const input = document.getElementById('password-input');
+  const error = document.getElementById('password-error');
+  const screen = document.getElementById('password-screen');
+
+  if (input.value === '12345678') {
+    screen.style.display = 'none';
+    sessionStorage.setItem('portfolioUnlocked', 'true');
+  } else {
+    error.style.display = 'block';
+    input.value = '';
+    input.focus();
+  }
+}
+
+window.addEventListener('load', () => {
+  const screen = document.getElementById('password-screen');
+
+  if (sessionStorage.getItem('portfolioUnlocked') === 'true') {
+    screen.style.display = 'none';
+  } else {
+    setTimeout(() => {
+      const input = document.getElementById('password-input');
+      if (input) input.focus();
+    }, 100);
+  }
 });
 </script>
 
