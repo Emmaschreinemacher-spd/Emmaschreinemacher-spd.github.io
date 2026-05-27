@@ -620,7 +620,36 @@ p.section-intro {
   line-height: 1.5;
   font-family: var(--font-body);
 }
+.project-visual-block {
+  margin: 28px 0 34px;
+}
 
+.project-visual-block img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--window-dark);
+  background: #f5f5f5;
+  box-shadow: inset 1px 1px 0 #aaa;
+}
+
+.project-caption {
+  font-size: 11px;
+  color: #555;
+  line-height: 1.5;
+  margin-top: 8px;
+  font-family: var(--font-ui);
+  max-width: 760px;
+}
+
+.project-section-label {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  margin: 30px 0 10px;
+}
 /* PROJECT DETAIL */
 .project-detail h1 {
   font-family: var(--font-title);
@@ -1177,25 +1206,24 @@ p.section-intro {
       <p style="font-family: var(--font-body); font-size: 13px; margin-bottom: 24px;">Sustainability consulting, strategic design, and graphic design work.</p>
 
       <div class="file-grid">
-        <a class="file-item" onclick="showPage('project-1')">
-          <div class="file-thumb"><div class="placeholder">📄</div></div>
-          <div class="file-name">Project Name 1</div>
-          <div class="file-meta">Sustainability · 2025</div>
-        </a>
+  <a class="file-item" onclick="showPage('project-disinformation')">
+    <div class="file-thumb"><img src="disinfostepbystep.png" alt="Disinformation Mirror"></div>
+    <div class="file-name">Disinformation Mirror</div>
+    <div class="file-meta">Systemic design · AI · FIOD</div>
+  </a>
 
-        <a class="file-item" onclick="showPage('project-2')">
-          <div class="file-thumb"><div class="placeholder">📄</div></div>
-          <div class="file-name">Project Name 2</div>
-          <div class="file-meta">Strategic · 2025</div>
-        </a>
+  <a class="file-item" onclick="showPage('project-2')">
+    <div class="file-thumb"><div class="placeholder">📄</div></div>
+    <div class="file-name">Project Name 2</div>
+    <div class="file-meta">Strategic · 2025</div>
+  </a>
 
-        <a class="file-item" onclick="showPage('project-3')">
-          <div class="file-thumb"><div class="placeholder">📄</div></div>
-          <div class="file-name">Project Name 3</div>
-          <div class="file-meta">Graphic · 2024</div>
-        </a>
-      </div>
-    </div>
+  <a class="file-item" onclick="showPage('project-3')">
+    <div class="file-thumb"><div class="placeholder">📄</div></div>
+    <div class="file-name">Project Name 3</div>
+    <div class="file-meta">Graphic · 2024</div>
+  </a>
+</div>
 
     <div class="statusbar">
       <div class="cell">3 object(s)</div>
@@ -1475,25 +1503,122 @@ p.section-intro {
 </div>
 
 <!-- PROJECT DETAIL PAGES -->
-<div class="page" id="project-1">
+<div class="page" id="project-disinformation">
   <div class="window">
     <div class="titlebar">
-      <div class="titlebar-text"><span class="titlebar-icon">📄</span><span>Project Name 1</span></div>
-      <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('projects')">×</div></div>
-    </div>
-    <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span></div>
-    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Design Projects</button></div>
-    <div class="content project-detail">
-      <h1>Project Name 1</h1>
-      <div class="detail-meta">
-        <div><strong>Discipline:</strong> Sustainability</div>
-        <div><strong>Year:</strong> 2025</div>
-        <div><strong>Context:</strong> TU Delft</div>
+      <div class="titlebar-text">
+        <span class="titlebar-icon">📄</span>
+        <span>Disinformation Mirror</span>
       </div>
-      <p>Write here about the project.</p>
-      <div class="detail-image empty">Hero image goes here</div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('projects')">×</div>
+      </div>
     </div>
-    <div class="statusbar"><div class="cell">Project loaded</div></div>
+
+    <div class="menubar">
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>H</u>elp</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Design Projects</button>
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+    </div>
+
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\Design Projects\Disinformation Mirror" readonly>
+    </div>
+
+    <div class="content project-detail">
+      <h1>Disinformation Mirror</h1>
+
+      <div class="detail-meta">
+        <div><strong>Duration:</strong> 10 weeks</div>
+        <div><strong>Type:</strong> Group project</div>
+        <div><strong>Context:</strong> Master Strategic Product Design · TU Delft</div>
+        <div><strong>Client:</strong> Belastingdienst / FIOD</div>
+        <div><strong>Focus:</strong> Systemic design · AI · Disinformation · Critical thinking</div>
+      </div>
+
+      <p>
+        The aim of this project was to explore how disinformation, AI-generated content and online manipulation affect society’s ability to recognise and respond to financial crime. Together with the FIOD, we looked beyond disinformation as a single fake message, and approached it as a systemic challenge shaped by hyperdigitalisation, echo chambers, declining trust and reduced critical thinking.
+      </p>
+
+      <div class="project-visual-block">
+        <img src="disinfosna.png" alt="Social Network Analysis">
+        <div class="project-caption">
+          Social network analysis showing the actors involved in disinformation, financial crime and digital safety.
+        </div>
+      </div>
+
+      <div class="project-section-label">The challenge</div>
+      <h2>The challenge</h2>
+      <p>
+        As AI-generated content, deepfakes and online scams become increasingly realistic, it becomes harder for people to distinguish what is real from what is manipulated. This does not only affect individuals, but also creates wider societal consequences: distrust, polarisation and increased vulnerability to financial crime. Our challenge was to explore how citizens could become more critically aware of the digital content they encounter.
+      </p>
+
+      <div class="project-visual-block">
+        <img src="disinfosystemmap.png" alt="System Map">
+        <div class="project-caption">
+          System map visualising how AI, hyperdigitalisation, trust, polarisation and critical thinking reinforce each other.
+        </div>
+      </div>
+
+      <div class="project-section-label">Our approach</div>
+      <h2>Our approach</h2>
+      <p>
+        We used stakeholder mapping, system mapping, future speculation and interviews with scam victims to understand where an intervention could create meaningful impact. A key insight was that the problem was not only about detecting fake content, but about creating a moment of friction: a pause in which people start questioning what they see online.
+      </p>
+
+      <div class="project-visual-block">
+        <img src="disinfofuturecone.png" alt="Future Cone">
+        <div class="project-caption">
+          Future cone exploring possible, probable and preferred futures in relation to AI, automation and digital trust.
+        </div>
+      </div>
+
+      <div class="project-section-label">The concept</div>
+      <h2>The concept</h2>
+      <p>
+        Our final concept, <em>The Disinformation Mirror</em>, is a speculative photo booth experience. At first, it feels like a simple public photo booth. But instead of receiving a normal photo, participants are confronted with a fake AI-generated news item or video involving themselves. This personal and emotional moment makes the abstract threat of disinformation tangible.
+      </p>
+
+      <div class="project-visual-block">
+        <img src="disinfointervention.png" alt="Intervention">
+        <div class="project-caption">
+          The intervention consists of a provocative photo booth, an educational webpage and a recurring Scam of the Month challenge.
+        </div>
+      </div>
+
+      <div class="project-section-label">How it works</div>
+      <h2>How it works</h2>
+      <p>
+        After the confrontation, participants are directed to a webpage with tools to recognise manipulation, deepfakes and scams. A recurring Scam of the Month challenge helps people keep practising their critical thinking, while also generating insights into public vulnerability to different types of scams.
+      </p>
+
+      <div class="project-visual-block">
+        <img src="disinfostepbystep.png" alt="Step-by-step explanation">
+        <div class="project-caption">
+          Step-by-step user journey of the Disinformation Mirror experience.
+        </div>
+      </div>
+
+      <div class="project-section-label">My role</div>
+      <h2>My role</h2>
+      <p>
+        My role focused on concept development, system mapping and stakeholder research. I helped structure the complexity of the problem, connect insights across the different system maps, translate stakeholder and interview findings into design opportunities, and develop the final speculative intervention. I was especially involved in shaping the idea of using a personal, confronting experience to make the abstract threat of AI-generated disinformation tangible.
+      </p>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">Project loaded</div>
+      <div class="cell small">📄 Disinformation Mirror</div>
+    </div>
   </div>
 </div>
 
