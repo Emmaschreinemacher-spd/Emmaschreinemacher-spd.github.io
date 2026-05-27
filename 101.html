@@ -58,7 +58,6 @@ body {
 
 a { color: var(--link); }
 
-/* DESKTOP ICONS */
 .desktop-icons {
   position: fixed;
   top: 16px;
@@ -100,7 +99,6 @@ a { color: var(--link); }
   font-size: 30px;
 }
 
-/* WINDOW */
 .window {
   background: var(--window);
   border-top: 2px solid var(--window-light);
@@ -139,7 +137,6 @@ a { color: var(--link); }
   .desktop-icons { display: none; }
 }
 
-/* TITLEBAR */
 .titlebar {
   background: linear-gradient(90deg, var(--titlebar) 0%, #1084d0 100%);
   color: var(--titlebar-text);
@@ -186,7 +183,6 @@ a { color: var(--link); }
   font-weight: 700;
 }
 
-/* MENUBAR */
 .menubar {
   display: flex;
   background: var(--window);
@@ -202,7 +198,6 @@ a { color: var(--link); }
 .menubar span:hover { background: var(--highlight); color: var(--highlight-text); }
 .menubar span u { text-decoration: underline; }
 
-/* TOOLBAR */
 .toolbar {
   background: var(--window);
   padding: 4px 6px;
@@ -236,7 +231,6 @@ a { color: var(--link); }
   border-bottom: 1px solid var(--window-light);
 }
 
-/* ADDRESS BAR */
 .addressbar {
   background: var(--window);
   padding: 4px 6px;
@@ -263,7 +257,6 @@ a { color: var(--link); }
   pointer-events: none;
 }
 
-/* CONTENT AREA */
 .content {
   background: white;
   border-top: 1px solid var(--window-darker);
@@ -277,7 +270,6 @@ a { color: var(--link); }
   overflow-y: auto;
 }
 
-/* STATUS BAR */
 .statusbar {
   background: var(--window);
   padding: 3px 6px;
@@ -301,11 +293,9 @@ a { color: var(--link); }
 
 .statusbar .cell.small { flex: 0 0 auto; }
 
-/* PAGE SYSTEM */
 .page { display: none; }
 .page.active { display: block; }
 
-/* HOME PAGE */
 .hero-grid {
   display: grid;
   grid-template-columns: 200px 1fr;
@@ -367,7 +357,7 @@ a { color: var(--link); }
   line-height: 1.6;
   margin-bottom: 20px;
   font-family: var(--font-body);
-  max-width: 540px;
+  max-width: 560px;
 }
 
 .status-row {
@@ -410,11 +400,10 @@ p.section-intro {
   color: #444;
 }
 
-/* FILE GRID */
 .file-grid {
   display: grid;
-  grid-template-columns: repeat(4, 160px);
-  gap: 28px;
+  grid-template-columns: repeat(4, 145px);
+  gap: 24px;
   padding: 32px 0;
   align-items: start;
 }
@@ -437,8 +426,8 @@ p.section-intro {
 }
 
 .file-thumb {
-  width: 160px;
-  height: 160px;
+  width: 145px;
+  height: 145px;
   background: #e8e8e8;
   border: 1px solid var(--window-dark);
   margin-bottom: 8px;
@@ -482,7 +471,6 @@ p.section-intro {
   .file-thumb { width: 160px; height: 160px; }
 }
 
-/* FOLDER CARDS */
 .folder-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -551,7 +539,6 @@ p.section-intro {
   font-family: var(--font-body);
 }
 
-/* PROJECT DETAIL */
 .project-detail h1 {
   font-family: var(--font-title);
   font-size: 36px;
@@ -612,7 +599,145 @@ p.section-intro {
 
 .detail-image.empty { aspect-ratio: 16 / 10; }
 
-/* BOTTOM NAVIGATION */
+/* MUSIC PLAYER */
+.music-player {
+  width: 360px;
+  max-width: 100%;
+  background: var(--window);
+  border-top: 2px solid var(--window-light);
+  border-left: 2px solid var(--window-light);
+  border-right: 2px solid var(--window-darker);
+  border-bottom: 2px solid var(--window-darker);
+  padding: 14px;
+  margin: 0 auto;
+}
+
+.music-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #e8e8e8;
+  border: 1px solid var(--window-dark);
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: inset 1px 1px 0 var(--window-darker);
+}
+
+.music-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.music-info {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.music-artist,
+.music-title {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.music-title { text-align: right; }
+
+.music-controls {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.music-play-btn {
+  background: var(--button);
+  border-top: 2px solid var(--window-light);
+  border-left: 2px solid var(--window-light);
+  border-right: 2px solid var(--window-darker);
+  border-bottom: 2px solid var(--window-darker);
+  height: 42px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.music-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+}
+
+.music-progress {
+  flex: 1;
+  height: 4px;
+  background: white;
+  border-top: 1px solid var(--window-darker);
+  border-left: 1px solid var(--window-darker);
+  border-right: 1px solid var(--window-light);
+  border-bottom: 1px solid var(--window-light);
+  overflow: hidden;
+}
+
+.music-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--titlebar);
+}
+
+.music-nav-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.music-nav-buttons button {
+  background: var(--button);
+  border-top: 2px solid var(--window-light);
+  border-left: 2px solid var(--window-light);
+  border-right: 2px solid var(--window-darker);
+  border-bottom: 2px solid var(--window-darker);
+  padding: 12px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-weight: 700;
+}
+
+.music-nav-buttons button:active,
+.music-play-btn:active {
+  border-top: 2px solid var(--window-darker);
+  border-left: 2px solid var(--window-darker);
+  border-right: 2px solid var(--window-light);
+  border-bottom: 2px solid var(--window-light);
+}
+
+.track-list {
+  margin-top: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+.track-btn {
+  background: white;
+  border: 1px solid var(--window-dark);
+  padding: 7px 8px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.track-btn:hover,
+.track-btn.active {
+  background: var(--highlight);
+  color: var(--highlight-text);
+}
+
 .taskbar {
   position: fixed;
   bottom: 0;
@@ -769,7 +894,6 @@ p.section-intro {
 </head>
 <body>
 
-<!-- DESKTOP ICONS -->
 <div class="desktop-icons">
   <a class="desktop-icon" onclick="showPage('home')">
     <div class="icon-img">🖥️</div>
@@ -787,7 +911,7 @@ p.section-intro {
     <div class="icon-img">📂</div>
     <span>Others</span>
   </a>
-  <a class="desktop-icon" onclick="toggleMusic()">
+  <a class="desktop-icon" onclick="showPage('music')">
     <div class="icon-img">💿</div>
     <span>Music</span>
   </a>
@@ -801,7 +925,6 @@ p.section-intro {
   </a>
 </div>
 
-<!-- HOME -->
 <div class="page active" id="home">
   <div class="window">
     <div class="titlebar">
@@ -829,6 +952,7 @@ p.section-intro {
       <button class="toolbar-btn" onclick="showPage('projects')">📁 Projects</button>
       <button class="toolbar-btn" onclick="showPage('emmaakt')">🎨 Em.maakt</button>
       <button class="toolbar-btn" onclick="showPage('others')">📂 Others</button>
+      <button class="toolbar-btn" onclick="showPage('music')">💿 Music</button>
       <button class="toolbar-btn" onclick="showPage('contact')">✉️ Contact</button>
     </div>
 
@@ -848,11 +972,12 @@ p.section-intro {
         <div class="hero-info">
           <span class="label">Welcome</span>
           <h1>Emma Schreinemacher</h1>
-       <p class="intro">
-  Hi there, I am Emma!<br><br>
-  I’m a Strategic Product Design student at TU Delft, exploring the space between sustainability, technology, strategy and visual storytelling. I like turning complex societal questions into clear insights, tangible concepts and visual stories, both through design projects and illustrations under the name <em>Em.maakt</em>.<br><br>
-  Enjoy scrolling through my browser!
-</p>          <div class="status-row">Available for collaborations &amp; commissions</div>
+          <p class="intro">
+            Hi there, I am Emma!<br><br>
+            I’m a Strategic Product Design student at TU Delft, exploring the space between sustainability, technology, strategy and visual storytelling. I like turning complex societal questions into clear insights, tangible concepts and visual stories, both through design projects and illustrations under the name <em>Em.maakt</em>.<br><br>
+            Enjoy scrolling through my browser!
+          </p>
+          <div class="status-row">Available for collaborations &amp; commissions</div>
           <p style="font-size: 13px; color: #444; font-family: var(--font-body);">📍 2nd year SPD student · TU Delft</p>
         </div>
       </div>
@@ -899,7 +1024,6 @@ p.section-intro {
   </div>
 </div>
 
-<!-- PROJECTS PAGE -->
 <div class="page" id="projects">
   <div class="window">
     <div class="titlebar">
@@ -922,11 +1046,11 @@ p.section-intro {
     </div>
     <div class="addressbar">
       <label>Address:</label>
-      <input type="text" value="C:\Portfolio\Projects" readonly>
+      <input type="text" value="C:\Portfolio\Design Projects" readonly>
     </div>
 
     <div class="content">
-      <h1 style="font-family: var(--font-title); font-size: 36px; font-weight: 400; margin-bottom: 8px;">Projects</h1>
+      <h1 style="font-family: var(--font-title); font-size: 36px; font-weight: 400; margin-bottom: 8px;">Design Projects</h1>
       <p style="font-family: var(--font-body); font-size: 13px; margin-bottom: 24px;">Sustainability consulting, strategic design, and graphic design work.</p>
 
       <div class="file-grid">
@@ -952,12 +1076,11 @@ p.section-intro {
 
     <div class="statusbar">
       <div class="cell">3 object(s)</div>
-      <div class="cell small">📁 Projects</div>
+      <div class="cell small">📁 Design Projects</div>
     </div>
   </div>
 </div>
 
-<!-- EM.MAAKT PAGE -->
 <div class="page" id="emmaakt">
   <div class="window">
     <div class="titlebar">
@@ -1033,7 +1156,6 @@ p.section-intro {
   </div>
 </div>
 
-<!-- OTHERS PAGE -->
 <div class="page" id="others">
   <div class="window">
     <div class="titlebar">
@@ -1079,7 +1201,86 @@ p.section-intro {
   </div>
 </div>
 
-<!-- CONTACT PAGE -->
+<div class="page" id="music">
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-text">
+        <span class="titlebar-icon">💿</span>
+        <span>Music</span>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="tb-btn">_</div>
+        <div class="tb-btn">□</div>
+        <div class="tb-btn" onclick="showPage('home')">×</div>
+      </div>
+    </div>
+
+    <div class="menubar">
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>G</u>o</span>
+      <span><u>H</u>elp</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="showPage('home')">⬅ Back</button>
+      <button class="toolbar-btn" onclick="showPage('home')">🏠 Home</button>
+    </div>
+
+    <div class="addressbar">
+      <label>Address:</label>
+      <input type="text" value="C:\Portfolio\Music" readonly>
+    </div>
+
+    <div class="content">
+      <h1 style="font-family: var(--font-title); font-size: 36px; font-weight: 400; margin-bottom: 8px;">Music</h1>
+      <p style="font-family: var(--font-body); font-size: 13px; margin-bottom: 24px;">A small playlist while scrolling through my browser.</p>
+
+      <div class="music-player">
+        <div class="music-cover">
+          <img id="music-cover-img" src="song1.jpg" alt="Song cover">
+        </div>
+
+        <div class="music-info">
+          <div class="music-artist" id="music-artist">Artist name 1</div>
+          <div class="music-title" id="music-title">Song title 1</div>
+        </div>
+
+        <div class="music-controls">
+          <button class="music-play-btn" id="music-play-btn" onclick="togglePlaylistMusic()">▶</button>
+
+          <div class="music-progress-wrap">
+            <span id="music-time">0:00</span>
+            <div class="music-progress">
+              <div class="music-progress-fill" id="music-progress-fill"></div>
+            </div>
+            <span id="music-duration">0:00</span>
+          </div>
+        </div>
+
+        <div class="music-nav-buttons">
+          <button onclick="previousTrack()">Previous</button>
+          <button onclick="nextTrack()">Next</button>
+        </div>
+
+        <div class="track-list">
+          <button class="track-btn active" onclick="selectTrack(0)">1. Song title 1</button>
+          <button class="track-btn" onclick="selectTrack(1)">2. Song title 2</button>
+          <button class="track-btn" onclick="selectTrack(2)">3. Song title 3</button>
+          <button class="track-btn" onclick="selectTrack(3)">4. Song title 4</button>
+          <button class="track-btn" onclick="selectTrack(4)">5. Song title 5</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div class="cell">5 object(s)</div>
+      <div class="cell small">💿 Music</div>
+    </div>
+  </div>
+</div>
+
 <div class="page" id="contact">
   <div class="window">
     <div class="titlebar">
@@ -1133,7 +1334,6 @@ p.section-intro {
   </div>
 </div>
 
-<!-- PROJECT DETAIL PAGES -->
 <div class="page" id="project-1">
   <div class="window">
     <div class="titlebar">
@@ -1141,7 +1341,7 @@ p.section-intro {
       <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('projects')">×</div></div>
     </div>
     <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span></div>
-    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Projects</button></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Design Projects</button></div>
     <div class="content project-detail">
       <h1>Project Name 1</h1>
       <div class="detail-meta">
@@ -1163,7 +1363,7 @@ p.section-intro {
       <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('projects')">×</div></div>
     </div>
     <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span></div>
-    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Projects</button></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Design Projects</button></div>
     <div class="content project-detail">
       <h1>Project Name 2</h1>
       <div class="detail-meta">
@@ -1184,7 +1384,7 @@ p.section-intro {
       <div class="titlebar-buttons"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn" onclick="showPage('projects')">×</div></div>
     </div>
     <div class="menubar"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span></div>
-    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Projects</button></div>
+    <div class="toolbar"><button class="toolbar-btn" onclick="showPage('projects')">⬅ Back to Design Projects</button></div>
     <div class="content project-detail">
       <h1>Project Name 3</h1>
       <div class="detail-meta">
@@ -1198,7 +1398,6 @@ p.section-intro {
   </div>
 </div>
 
-<!-- EM.MAAKT DETAIL PAGES -->
 <div class="page" id="drawing-backpack">
   <div class="window">
     <div class="titlebar">
@@ -1337,7 +1536,6 @@ p.section-intro {
   </div>
 </div>
 
-<!-- OTHER DETAIL PAGE -->
 <div class="page" id="other-1">
   <div class="window">
     <div class="titlebar">
@@ -1358,7 +1556,6 @@ p.section-intro {
   </div>
 </div>
 
-<!-- BOTTOM NAVIGATION -->
 <div class="taskbar">
   <div class="start-btn" onclick="showPage('home')">
     <span class="start-flag"></span>
@@ -1372,7 +1569,7 @@ p.section-intro {
     </a>
     <a class="nav-btn" onclick="showPage('projects')">
       <span class="nav-icon">📁</span>
-      <span>Projects</span>
+      <span>Design Projects</span>
     </a>
     <a class="nav-btn" onclick="showPage('emmaakt')">
       <span class="nav-icon">🎨</span>
@@ -1381,6 +1578,10 @@ p.section-intro {
     <a class="nav-btn" onclick="showPage('others')">
       <span class="nav-icon">📂</span>
       <span>Others</span>
+    </a>
+    <a class="nav-btn" onclick="showPage('music')">
+      <span class="nav-icon">💿</span>
+      <span>Music</span>
     </a>
     <a class="nav-btn" onclick="showPage('contact')">
       <span class="nav-icon">✉️</span>
@@ -1400,21 +1601,123 @@ p.section-intro {
 </div>
 
 <script>
-const bgMusic = new Audio('music.mp3');
-bgMusic.loop = true;
+const playlist = [
+  {
+    title: 'Song title 1',
+    artist: 'Artist name 1',
+    cover: 'song1.jpg',
+    file: 'song1.mp3'
+  },
+  {
+    title: 'Song title 2',
+    artist: 'Artist name 2',
+    cover: 'song2.jpg',
+    file: 'song2.mp3'
+  },
+  {
+    title: 'Song title 3',
+    artist: 'Artist name 3',
+    cover: 'song3.jpg',
+    file: 'song3.mp3'
+  },
+  {
+    title: 'Song title 4',
+    artist: 'Artist name 4',
+    cover: 'song4.jpg',
+    file: 'song4.mp3'
+  },
+  {
+    title: 'Song title 5',
+    artist: 'Artist name 5',
+    cover: 'song5.jpg',
+    file: 'song5.mp3'
+  }
+];
+
+let currentTrack = 0;
+let musicPlaying = false;
+const bgMusic = new Audio(playlist[currentTrack].file);
 bgMusic.volume = 0.25;
 
-let musicPlaying = false;
+function loadTrack(index, autoplay = false) {
+  currentTrack = index;
 
-function toggleMusic() {
+  bgMusic.pause();
+  bgMusic.src = playlist[currentTrack].file;
+  bgMusic.currentTime = 0;
+
+  const cover = document.getElementById('music-cover-img');
+  const title = document.getElementById('music-title');
+  const artist = document.getElementById('music-artist');
+  const playBtn = document.getElementById('music-play-btn');
+
+  if (cover) cover.src = playlist[currentTrack].cover;
+  if (title) title.textContent = playlist[currentTrack].title;
+  if (artist) artist.textContent = playlist[currentTrack].artist;
+  if (playBtn) playBtn.textContent = autoplay ? 'Ⅱ' : '▶';
+
+  document.querySelectorAll('.track-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === currentTrack);
+  });
+
+  if (autoplay) {
+    bgMusic.play().catch(() => {});
+    musicPlaying = true;
+  } else {
+    musicPlaying = false;
+  }
+}
+
+function togglePlaylistMusic() {
+  const playBtn = document.getElementById('music-play-btn');
+
   if (musicPlaying) {
     bgMusic.pause();
     musicPlaying = false;
+    if (playBtn) playBtn.textContent = '▶';
   } else {
     bgMusic.play().catch(() => {});
     musicPlaying = true;
+    if (playBtn) playBtn.textContent = 'Ⅱ';
   }
 }
+
+function selectTrack(index) {
+  loadTrack(index, true);
+}
+
+function nextTrack() {
+  const next = (currentTrack + 1) % playlist.length;
+  loadTrack(next, true);
+}
+
+function previousTrack() {
+  const previous = (currentTrack - 1 + playlist.length) % playlist.length;
+  loadTrack(previous, true);
+}
+
+function formatTime(seconds) {
+  if (isNaN(seconds)) return '0:00';
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+  return `${minutes}:${secs}`;
+}
+
+bgMusic.addEventListener('timeupdate', () => {
+  const progress = bgMusic.duration ? (bgMusic.currentTime / bgMusic.duration) * 100 : 0;
+
+  const fill = document.getElementById('music-progress-fill');
+  const time = document.getElementById('music-time');
+  const duration = document.getElementById('music-duration');
+
+  if (fill) fill.style.width = progress + '%';
+  if (time) time.textContent = formatTime(bgMusic.currentTime);
+  if (duration) duration.textContent = formatTime(bgMusic.duration);
+});
+
+bgMusic.addEventListener('ended', () => {
+  nextTrack();
+});
 
 function playClickSound() {
   try {
@@ -1462,7 +1765,8 @@ function showPage(id) {
       'projects': 1,
       'emmaakt': 2,
       'others': 3,
-      'contact': 4
+      'music': 4,
+      'contact': 5
     };
     const navButtons = document.querySelectorAll('.bottom-nav .nav-btn');
     if (navMap[id] !== undefined && navButtons[navMap[id]]) {
@@ -1484,6 +1788,10 @@ updateClock();
 setInterval(updateClock, 30000);
 
 window.addEventListener('load', () => {
+  if (document.getElementById('music-cover-img')) {
+    loadTrack(0, false);
+  }
+
   const hash = window.location.hash.slice(1);
   if (hash && document.getElementById(hash)) {
     showPage(hash);
@@ -1500,7 +1808,6 @@ window.addEventListener('popstate', () => {
   }
 });
 
-/* DRAGGABLE WINDOWS */
 let zIndexCounter = 10;
 
 document.querySelectorAll('.window').forEach(win => {
