@@ -1338,6 +1338,7 @@ p.section-intro {
     <div class="file-meta">Graphic · 2024</div>
   </a>
 </div>
+    </div>
 
     <div class="statusbar">
       <div class="cell">3 object(s)</div>
@@ -2149,37 +2150,47 @@ function playClickSound() {
 function showPage(id) {
   playClickSound();
 
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const page = document.getElementById(id);
 
-  if (page) {
-    page.classList.add('active');
-
-    const win = page.querySelector('.window');
-    if (win) {
-      win.style.left = '50%';
-      win.style.top = '60px';
-      win.style.transform = 'translateX(-50%)';
+  if (!page) {
+    console.warn('Page not found:', id);
+    const home = document.getElementById('home');
+    if (home) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      home.classList.add('active');
+      history.pushState(null, '', '#home');
     }
+    return;
+  }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    history.pushState(null, '', '#' + id);
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  page.classList.add('active');
 
-    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-    const navMap = {
-      'home': 0,
-      'projects': 1,
-      'emmaakt': 2,
-      'others': 3,
-      'music': 4,
-      'contact': 5
-    };
+  const win = page.querySelector('.window');
+  if (win) {
+    win.style.left = '50%';
+    win.style.top = '60px';
+    win.style.transform = 'translateX(-50%)';
+  }
 
-    const navButtons = document.querySelectorAll('.bottom-nav .nav-btn');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  history.pushState(null, '', '#' + id);
 
-    if (navMap[id] !== undefined && navButtons[navMap[id]]) {
-      navButtons[navMap[id]].classList.add('active');
-    }
+  document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+  const navMap = {
+    'home': 0,
+    'projects': 1,
+    'emmaakt': 2,
+    'others': 3,
+    'music': 4,
+    'contact': 5
+  };
+
+  const navButtons = document.querySelectorAll('.bottom-nav .nav-btn');
+
+  if (navMap[id] !== undefined && navButtons[navMap[id]]) {
+    navButtons[navMap[id]].classList.add('active');
   }
 }
 
