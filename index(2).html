@@ -581,70 +581,84 @@
       line-height: 1;
     }
 
-    .music-player {
-      width: 302px;
-      height: 145px;
-      display: block;
-      background: url("musicplayer.png") center / contain no-repeat;
-    }
+   .music-player {
+  position: fixed;
+  right: 18px;
+  top: 78px;
+  z-index: 1900;
+  width: 300px;
+  height: 170px;
+}
 
-    .music-cover {
-      position: absolute;
-      left: 18px;
-      top: 25px;
-      width: 92px;
-      height: 78px;
-      object-fit: cover;
-      background: white;
-      border: 3px solid #111;
-    }
+.player-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
 
-    .music-title {
-      position: absolute;
-      left: 18px;
-      top: 110px;
-      width: 92px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      font-size: 11px;
-      letter-spacing: -0.04em;
-      text-align: center;
-      color: #111;
-    }
+.music-cover {
+  position: absolute;
+  left: 33px;
+  top: 35px;
+  width: 86px;
+  height: 68px;
+  object-fit: cover;
+  border: 2px solid #111;
+  background: transparent;
+}
 
-    .player-btn {
-      position: absolute;
-      padding: 0 !important;
-      background: transparent !important;
-      color: transparent !important;
-      border-radius: 999px !important;
-    }
+.music-title {
+  position: absolute;
+  left: 8px;
+  top: 132px;
+  width: 284px;
+  color: #111;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-    .player-btn.play {
-      right: 83px;
-      bottom: 29px;
-      width: 54px;
-      height: 35px;
-    }
+.player-btn {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  color: transparent;
+  padding: 0;
+}
 
-    .player-btn.prev {
-      right: 173px;
-      top: 61px;
-      width: 32px;
-      height: 28px;
-    }
+.player-btn.prev {
+  left: 181px;
+  top: 63px;
+  width: 28px;
+  height: 26px;
+}
 
-    .player-btn.next {
-      right: 34px;
-      top: 61px;
-      width: 32px;
-      height: 28px;
-    }
+.player-btn.next {
+  right: 29px;
+  top: 63px;
+  width: 28px;
+  height: 26px;
+}
 
-    .player-btn:hover {
-      background: rgba(0,0,0,0.05) !important;
-    }
+.player-btn.play {
+  left: 204px;
+  top: 94px;
+  width: 50px;
+  height: 34px;
+}
+
+.player-btn:hover {
+  background: rgba(0,0,0,0.05);
+  border-radius: 999px;
+}
 
 
     @media (max-width: 850px) {
@@ -692,13 +706,26 @@
       your@email.com, @yourhandle
     </div>
 
-    <div class="music-player" aria-label="music player">
-      <img class="music-cover" id="musicCover" src="song1.jpg" alt="" />
-      <div class="music-title" id="musicTitle">song 1</div>
-      <button class="player-btn prev" type="button" id="prevSong" aria-label="previous song">previous</button>
-      <button class="player-btn play" type="button" id="playPause" aria-label="play or pause">play</button>
-      <button class="player-btn next" type="button" id="nextSong" aria-label="next song">next</button>
-    </div>
+  <div class="music-player" aria-label="music player">
+  <img class="player-base" src="musicplayer.png" alt="" />
+  <img class="music-cover" id="musicCover" src="song1.jpg" alt="" />
+
+  <div class="music-title" id="musicTitle">
+    Dire Straits - Sultans Of Swing
+  </div>
+
+  <button class="player-btn prev" type="button" id="prevSong" aria-label="previous song">
+    previous
+  </button>
+
+  <button class="player-btn play" type="button" id="playPause" aria-label="play or pause">
+    play
+  </button>
+
+  <button class="player-btn next" type="button" id="nextSong" aria-label="next song">
+    next
+  </button>
+</div>
 
     <section class="visual-world" id="visualWorld" aria-label="interactive project archive"></section>
 
@@ -834,12 +861,18 @@
     let currentSongIndex = 0;
     let isPlaying = false;
 
-    const songs = [
-      { title: "song 1", file: "song1.mp3", cover: "song1.jpg" },
-      { title: "song 2", file: "song2.mp3", cover: "song2.jpg" }
-      // Add more songs like this:
-      // { title: "Ring of Past", file: "ring-of-past.mp3", cover: "ring-of-past.jpg" }
-    ];
+   const songs = [
+  {
+    title: "Dire Straits - Sultans Of Swing",
+    file: "song1.mp3",
+    cover: "song1.jpg"
+  },
+  {
+    title: "Men I Trust - Ring of Past",
+    file: "song2.mp3",
+    cover: "song2.jpg"
+  }
+];
 
     function clamp(value, min, max) {
       return Math.min(Math.max(value, min), max);
