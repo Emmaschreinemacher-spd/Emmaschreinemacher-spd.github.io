@@ -1,0 +1,1040 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio 2</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html, body, button, a {
+      cursor: url("cursor.png") 0 0, auto;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #d9d9d7;
+      color: #090909;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 35%, #f1f1ef 0%, #d7d7d5 42%, #bdbdb9 100%);
+    }
+
+    button, a {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+
+    a { text-decoration: none; }
+
+    .site-shell {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .scroll-space {
+      height: 430vh;
+      pointer-events: none;
+    }
+
+    .intro-copy {
+      position: fixed;
+      left: 112px;
+      top: 16px;
+      z-index: 1800;
+      font-size: 20px;
+      line-height: 0.9;
+      letter-spacing: -0.065em;
+    }
+
+    .top-right-copy {
+      position: fixed;
+      right: 20px;
+      top: 16px;
+      z-index: 1800;
+      font-size: 18px;
+      line-height: 0.9;
+      letter-spacing: -0.055em;
+      text-align: right;
+    }
+
+    .brand-mark {
+      position: fixed;
+      top: 8px;
+      left: 50%;
+      z-index: 1800;
+      width: 130px;
+      height: 54px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      right: 20px;
+      top: 0;
+      width: 52px;
+      height: 54px;
+      border-radius: 999px;
+      background: #d9d9d7;
+    }
+
+    .visual-world {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+      perspective: 1200px;
+    }
+
+    .floating-card {
+      position: absolute;
+      display: block;
+      padding: 0;
+      overflow: hidden;
+      transform-origin: center center;
+      transition: transform 0.16s ease-out, opacity 0.16s ease-out, filter 0.16s ease-out;
+      will-change: transform;
+    }
+
+    .floating-card:hover {
+      filter: contrast(1.08) saturate(1.08);
+    }
+
+    .floating-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(90deg, transparent 47%, rgba(0,0,0,0.05) 50%, transparent 53%),
+        linear-gradient(0deg, transparent 47%, rgba(0,0,0,0.05) 50%, transparent 53%);
+      background-size: 44px 44px;
+      color: #111;
+    }
+
+    .placeholder span {
+      position: absolute;
+      left: 15px;
+      top: 13px;
+      font-size: 15px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .placeholder strong {
+      max-width: 72%;
+      font-size: 30px;
+      line-height: 0.88;
+      letter-spacing: -0.08em;
+      text-align: center;
+    }
+
+    .card-caption {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      max-width: 190px;
+      color: white;
+      background: rgba(0,0,0,0.72);
+      border-radius: 4px;
+      padding: 5px 7px;
+      font-size: 12px;
+      line-height: 0.95;
+      text-align: left;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .floating-card:hover .card-caption { opacity: 1; }
+
+    .control-panel {
+      position: fixed;
+      left: 50%;
+      bottom: 54px;
+      z-index: 1600;
+      width: 560px;
+      min-height: 230px;
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 22px;
+      padding: 15px;
+      transform: translateX(-50%);
+      color: white;
+      background: rgba(84,84,84,0.78);
+      border-radius: 6px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .statement {
+      font-size: 30px;
+      line-height: 0.91;
+      letter-spacing: -0.08em;
+    }
+
+    .panel-list {
+      font-size: 16px;
+      line-height: 0.93;
+      letter-spacing: -0.055em;
+    }
+
+    .panel-list p { margin: 0; }
+
+    .panel-title {
+      margin-bottom: 8px !important;
+      font-size: 12px;
+      opacity: 0.65;
+      letter-spacing: -0.03em;
+    }
+
+    .topbar {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 2000;
+      display: flex;
+      gap: 5px;
+    }
+
+    .nav-button, .contact-button {
+      background: rgba(80,80,80,0.78);
+      color: white;
+      border-radius: 5px;
+      padding: 5px 11px 6px;
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: -0.045em;
+      text-decoration: none;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .nav-button:hover, .contact-button:hover, .nav-button.is-active {
+      background: rgba(20,20,20,0.88);
+    }
+
+    .ticker {
+      position: fixed;
+      left: calc(50% + 122px);
+      bottom: 16px;
+      z-index: 1700;
+      width: 390px;
+      overflow: hidden;
+      color: white;
+      background: rgba(86,86,86,0.72);
+      border-radius: 5px;
+      padding: 5px 0 6px;
+      font-size: 18px;
+      line-height: 1;
+      white-space: nowrap;
+      letter-spacing: -0.05em;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .ticker div {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 18s linear infinite;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    .hover-card {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2100;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 170px;
+      color: white;
+      background: rgba(0,0,0,0.78);
+      border-radius: 6px;
+      padding: 10px 12px;
+      pointer-events: none;
+      transition: opacity 0.12s ease;
+      opacity: 0;
+    }
+
+    .hover-card span, .hover-card em {
+      font-size: 12px;
+      font-style: normal;
+      opacity: 0.65;
+    }
+
+    .hover-card strong {
+      font-size: 18px;
+      line-height: 0.9;
+      letter-spacing: -0.055em;
+    }
+
+    .overlay-page {
+      position: fixed;
+      inset: 0;
+      z-index: 1400;
+      display: none;
+      padding: 95px 20px 90px;
+      overflow-y: auto;
+      background: rgba(216,216,212,0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .overlay-page.is-open { display: block; }
+
+    .page-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      margin: 0 0 36px;
+      font-size: clamp(58px, 9vw, 150px);
+      line-height: 0.78;
+      letter-spacing: -0.1em;
+      font-weight: 700;
+    }
+
+    .work-list { display: grid; gap: 8px; }
+
+    .work-row {
+      display: grid;
+      grid-template-columns: 70px 1fr 1fr;
+      gap: 18px;
+      width: 100%;
+      padding: 10px 0;
+      border-top: 1px solid rgba(0,0,0,0.22);
+      font-size: 28px;
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+      text-align: left;
+    }
+
+    .work-row:hover { background: rgba(255,255,255,0.28); }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .index-item {
+      aspect-ratio: 1 / 1;
+      position: relative;
+      overflow: hidden;
+      background: #eeeeea;
+    }
+
+    .index-item img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .index-item div {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      font-size: 24px;
+      line-height: 0.9;
+      letter-spacing: -0.07em;
+      text-align: center;
+    }
+
+    .studio-text {
+      max-width: 850px;
+      font-size: clamp(34px, 5vw, 76px);
+      line-height: 0.88;
+      letter-spacing: -0.09em;
+    }
+
+    .studio-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 52px;
+      font-size: 22px;
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+    }
+
+    .studio-columns h3 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      opacity: 0.55;
+      letter-spacing: -0.03em;
+    }
+
+    .studio-columns p { margin: 0; }
+
+    .music-player {
+      position: fixed;
+      right: 18px;
+      top: 78px;
+      z-index: 1900;
+      display: flex;
+      gap: 5px;
+    }
+
+    .music-player button {
+      background: rgba(80,80,80,0.78);
+      color: white;
+      border-radius: 5px;
+      padding: 5px 9px;
+      font-size: 14px;
+      line-height: 1;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+
+    .password-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 50% 35%, #f1f1ef 0%, #d7d7d5 42%, #bdbdb9 100%);
+      color: #090909;
+    }
+
+    .password-box {
+      width: min(420px, calc(100vw - 32px));
+      padding: 22px;
+      background: rgba(255,255,255,0.38);
+      border: 1px solid rgba(0,0,0,0.18);
+      border-radius: 8px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .password-box h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      line-height: 0.85;
+      letter-spacing: -0.08em;
+    }
+
+    .password-box p {
+      margin: 0 0 16px;
+      font-size: 16px;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      opacity: 0.7;
+    }
+
+    .password-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .password-row input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      border-radius: 5px;
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 18px;
+      background: rgba(255,255,255,0.82);
+      outline: none;
+    }
+
+    .password-row button {
+      border-radius: 5px;
+      padding: 10px 14px;
+      background: rgba(20,20,20,0.86);
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .password-error {
+      display: none;
+      margin-top: 10px;
+      color: #b00020;
+      font-size: 14px;
+      letter-spacing: -0.03em;
+    }
+
+    body.is-locked .site-shell {
+      visibility: hidden;
+    }
+
+    body.is-unlocked .password-screen {
+      display: none;
+    }
+
+    .control-panel {
+      bottom: -150px;
+      transition: bottom 0.28s ease, transform 0.28s ease;
+    }
+
+    .control-panel:hover {
+      bottom: 54px;
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      display: none;
+      grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.55fr);
+      gap: 22px;
+      padding: 34px;
+      background: rgba(16,16,16,0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .image-modal.is-open {
+      display: grid;
+    }
+
+    .modal-image-wrap {
+      min-height: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .image-modal img {
+      max-width: 100%;
+      max-height: calc(100vh - 68px);
+      object-fit: contain;
+      box-shadow: 0 16px 60px rgba(0,0,0,0.35);
+    }
+
+    .modal-text {
+      align-self: center;
+      color: white;
+      background: rgba(90,90,90,0.62);
+      border-radius: 8px;
+      padding: 18px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .modal-text small {
+      display: block;
+      margin-bottom: 12px;
+      opacity: 0.65;
+      font-size: 13px;
+      letter-spacing: -0.03em;
+    }
+
+    .modal-text h2 {
+      margin: 0 0 14px;
+      font-size: 44px;
+      line-height: 0.86;
+      letter-spacing: -0.08em;
+    }
+
+    .modal-text p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .modal-close {
+      position: fixed;
+      right: 20px;
+      top: 18px;
+      z-index: 5100;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      color: #111;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .music-player {
+      width: 302px;
+      height: 145px;
+      display: block;
+      background: url("musicplayer.png") center / contain no-repeat;
+    }
+
+    .music-cover {
+      position: absolute;
+      left: 18px;
+      top: 25px;
+      width: 92px;
+      height: 78px;
+      object-fit: cover;
+      background: white;
+      border: 3px solid #111;
+    }
+
+    .music-title {
+      position: absolute;
+      left: 18px;
+      top: 110px;
+      width: 92px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 11px;
+      letter-spacing: -0.04em;
+      text-align: center;
+      color: #111;
+    }
+
+    .player-btn {
+      position: absolute;
+      padding: 0 !important;
+      background: transparent !important;
+      color: transparent !important;
+      border-radius: 999px !important;
+    }
+
+    .player-btn.play {
+      right: 83px;
+      bottom: 29px;
+      width: 54px;
+      height: 35px;
+    }
+
+    .player-btn.prev {
+      right: 173px;
+      top: 61px;
+      width: 32px;
+      height: 28px;
+    }
+
+    .player-btn.next {
+      right: 34px;
+      top: 61px;
+      width: 32px;
+      height: 28px;
+    }
+
+    .player-btn:hover {
+      background: rgba(0,0,0,0.05) !important;
+    }
+
+
+    @media (max-width: 850px) {
+      .intro-copy { left: 14px; top: 62px; }
+      .top-right-copy { display: none; }
+      .brand-mark { width: 84px; height: 36px; }
+      .brand-mark::after { width: 35px; height: 36px; right: 12px; }
+      .control-panel { width: calc(100vw - 24px); bottom: 68px; grid-template-columns: 1fr; gap: 14px; }
+      .statement { font-size: 27px; }
+      .panel-list { display: none; }
+      .ticker { display: none; }
+      .floating-card { max-width: 80vw; }
+      .work-row { grid-template-columns: 45px 1fr; font-size: 24px; }
+      .work-row span:last-child { grid-column: 2; opacity: 0.65; }
+      .index-grid { grid-template-columns: repeat(2, 1fr); }
+      .studio-columns { grid-template-columns: 1fr; }
+      .music-player { top: 16px; right: 12px; }
+    }
+  </style>
+</head>
+<body class="is-locked">
+  <section class="password-screen" id="passwordScreen">
+    <form class="password-box" id="passwordForm">
+      <h1>Hi there.</h1>
+      <p>Enter the password to open the portfolio.</p>
+      <div class="password-row">
+        <input id="passwordInput" type="password" autocomplete="off" placeholder="password" />
+        <button type="submit">enter</button>
+      </div>
+      <div class="password-error" id="passwordError">Wrong password, try again.</div>
+    </form>
+  </section>
+  <main class="site-shell">
+    <div class="scroll-space"></div>
+
+    <div class="intro-copy">
+      Strategic designer rooted in people,<br />
+      technology, and future thinking
+    </div>
+
+    <div class="brand-mark" aria-label="Portfolio mark"></div>
+
+    <div class="top-right-copy">
+      Rotterdam + Delft<br />
+      your@email.com, @yourhandle
+    </div>
+
+    <div class="music-player" aria-label="music player">
+      <img class="music-cover" id="musicCover" src="song1.jpg" alt="" />
+      <div class="music-title" id="musicTitle">song 1</div>
+      <button class="player-btn prev" type="button" id="prevSong" aria-label="previous song">previous</button>
+      <button class="player-btn play" type="button" id="playPause" aria-label="play or pause">play</button>
+      <button class="player-btn next" type="button" id="nextSong" aria-label="next song">next</button>
+    </div>
+
+    <section class="visual-world" id="visualWorld" aria-label="interactive project archive"></section>
+
+    <section class="control-panel">
+      <div class="statement">
+        I am a strategic product designer exploring how design, AI and human behaviour can shape digital experiences that feel personal, useful and meaningful over time.
+      </div>
+
+      <div class="panel-list">
+        <p class="panel-title">FOCUS</p>
+        <p>Strategic design</p>
+        <p>UX research</p>
+        <p>AI interfaces</p>
+        <p>Future visioning</p>
+        <p>System mapping</p>
+        <p>Prototyping</p>
+      </div>
+
+      <div class="panel-list">
+        <p class="panel-title">SELECTED</p>
+        <p>Disinformation Mirror</p>
+        <p>NWT Roadmap</p>
+        <p>UPskillz</p>
+        <p>Portfolio Project</p>
+        <p>More</p>
+      </div>
+    </section>
+
+    <nav class="topbar">
+      <button class="nav-button" data-view="work">Work</button>
+      <button class="nav-button" data-view="index">Index</button>
+      <button class="nav-button" data-view="studio">Studio</button>
+      <a class="contact-button" href="mailto:your@email.com">Contact</a>
+    </nav>
+
+    <section class="ticker">
+      <div>selected work, design, strategy, technology, behaviour, futures, systems, prototypes, selected work, design, strategy, technology, behaviour, futures, systems, prototypes</div>
+    </section>
+
+    <section class="hover-card" id="hoverCard"></section>
+
+    <section class="image-modal" id="imageModal" aria-label="image detail">
+      <button class="modal-close" id="modalClose" type="button" aria-label="close">×</button>
+      <div class="modal-image-wrap">
+        <img id="modalImage" src="" alt="" />
+      </div>
+      <div class="modal-text">
+        <small id="modalNumber"></small>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+    </section>
+
+    <section class="overlay-page" id="workPage">
+      <div class="page-inner">
+        <h1 class="page-title">Work</h1>
+        <div class="work-list" id="workList"></div>
+      </div>
+    </section>
+
+    <section class="overlay-page" id="indexPage">
+      <div class="page-inner">
+        <h1 class="page-title">Index</h1>
+        <div class="index-grid" id="indexGrid"></div>
+      </div>
+    </section>
+
+    <section class="overlay-page" id="studioPage">
+      <div class="page-inner">
+        <h1 class="page-title">Studio</h1>
+        <div class="studio-text">
+          Hi there, I am Emma. I work at the intersection of design, strategy and technology, translating complex questions into clear concepts, future directions and tangible digital experiences.
+        </div>
+
+        <div class="studio-columns">
+          <div>
+            <h3>APPROACH</h3>
+            <p>Research, system thinking, concept development, prototyping and strategic storytelling.</p>
+          </div>
+          <div>
+            <h3>INTERESTS</h3>
+            <p>AI, malleable software, behavioural change, sustainability and meaningful digital tools.</p>
+          </div>
+          <div>
+            <h3>CONTACT</h3>
+            <p>your@email.com<br />@yourhandle<br />Rotterdam / Delft</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const projects = [
+      { id: "01", title: "Emma", subtitle: "Portrait / personal image", description: "Add your longer text for this image here. You can describe the project, the process, your role or a small story behind the visual.", image: "emma-foto.png", bg: "#d7d7d2", rotate: -18, w: 360, h: 460 },
+      { id: "02", title: "FICQ Partners", subtitle: "Project placeholder / visual identity", description: "Add your longer text for this image here.", image: "ficq-partners.jpg", bg: "#111111", rotate: 27, w: 440, h: 300 },
+      { id: "03", title: "Groenteboer", subtitle: "Project placeholder / visual research", description: "Add your longer text for this image here.", image: "groenteboer.jpg", bg: "#f7f7f5", rotate: 14, w: 420, h: 320 },
+      { id: "04", title: "Japan 2024", subtitle: "Photography / travel archive", description: "Add your longer text for this image here.", image: "japan-2024.jpg", bg: "#073d24", rotate: -9, w: 390, h: 330 },
+      { id: "05", title: "Juul", subtitle: "Personal archive / image placeholder", description: "Add your longer text for this image here.", image: "juul1.jpg", bg: "#ffffff", rotate: 8, w: 470, h: 320 },
+      { id: "06", title: "Postkaartje 1", subtitle: "Graphic experiment / visual archive", description: "Add your longer text for this image here.", image: "postkaartje1.png", bg: "#fa4b1f", rotate: -5, w: 540, h: 360 },
+      { id: "07", title: "Postkaartje 2", subtitle: "Graphic experiment / visual archive", description: "Add your longer text for this image here.", image: "postkaartje2.png", bg: "#161616", rotate: 22, w: 310, h: 450 },
+      { id: "08", title: "Postkaartje 3", subtitle: "Graphic experiment / visual archive", description: "Add your longer text for this image here.", image: "postkaartje3.png", bg: "#efefef", rotate: -30, w: 350, h: 350 },
+      { id: "09", title: "Song 1", subtitle: "Music visual / archive image", description: "Add your longer text for this image here.", image: "song1.jpg", bg: "#242424", rotate: 5, w: 280, h: 420 },
+      { id: "10", title: "Song 2", subtitle: "Music visual / archive image", description: "Add your longer text for this image here.", image: "song2.jpg", bg: "#ffffff", rotate: 17, w: 420, h: 300 }
+    ];
+
+    const visualWorld = document.getElementById("visualWorld");
+    const hoverCard = document.getElementById("hoverCard");
+    const workList = document.getElementById("workList");
+    const indexGrid = document.getElementById("indexGrid");
+    const navButtons = document.querySelectorAll(".nav-button");
+    const pages = {
+      work: document.getElementById("workPage"),
+      index: document.getElementById("indexPage"),
+      studio: document.getElementById("studioPage")
+    };
+
+    const passwordForm = document.getElementById("passwordForm");
+    const passwordInput = document.getElementById("passwordInput");
+    const passwordError = document.getElementById("passwordError");
+
+    const imageModal = document.getElementById("imageModal");
+    const modalImage = document.getElementById("modalImage");
+    const modalNumber = document.getElementById("modalNumber");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalClose = document.getElementById("modalClose");
+
+    let mouse = { x: 0, y: 0 };
+    let scrollProgress = 0;
+    let currentView = "home";
+    let audio = new Audio();
+    let currentSongIndex = 0;
+    let isPlaying = false;
+
+    const songs = [
+      { title: "song 1", file: "song1.mp3", cover: "song1.jpg" },
+      { title: "song 2", file: "song2.mp3", cover: "song2.jpg" }
+      // Add more songs like this:
+      // { title: "Ring of Past", file: "ring-of-past.mp3", cover: "ring-of-past.jpg" }
+    ];
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function showHover(project) {
+      hoverCard.innerHTML = `<span>${project.id}</span><strong>${project.title}</strong><em>${project.subtitle}</em>`;
+      hoverCard.style.opacity = 1;
+    }
+
+    function hideHover() {
+      hoverCard.style.opacity = 0;
+    }
+
+    function openView(nextView) {
+      currentView = currentView === nextView ? "home" : nextView;
+      Object.entries(pages).forEach(([name, page]) => {
+        page.classList.toggle("is-open", name === currentView);
+      });
+      navButtons.forEach(button => {
+        button.classList.toggle("is-active", button.dataset.view === currentView);
+      });
+    }
+
+    function openImageModal(project) {
+      modalImage.src = project.image;
+      modalNumber.textContent = project.id;
+      modalTitle.textContent = project.title;
+      modalDescription.textContent = project.description || project.subtitle || "";
+      imageModal.classList.add("is-open");
+    }
+
+    function closeImageModal() {
+      imageModal.classList.remove("is-open");
+      modalImage.src = "";
+    }
+
+    function updateMusicUI() {
+      const song = songs[currentSongIndex];
+      document.getElementById("musicCover").src = song.cover;
+      document.getElementById("musicTitle").textContent = song.title;
+      document.getElementById("playPause").setAttribute("aria-label", isPlaying ? "pause" : "play");
+    }
+
+    function loadSong(index, shouldPlay = true) {
+      currentSongIndex = (index + songs.length) % songs.length;
+      const song = songs[currentSongIndex];
+      audio.src = song.file;
+      audio.loop = false;
+      updateMusicUI();
+
+      if (shouldPlay) {
+        audio.play();
+        isPlaying = true;
+      }
+    }
+
+    function togglePlayPause() {
+      if (!audio.src) {
+        loadSong(currentSongIndex, true);
+        return;
+      }
+
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+      } else {
+        audio.play();
+        isPlaying = true;
+      }
+
+      updateMusicUI();
+    }
+
+    function createCards() {
+      visualWorld.innerHTML = "";
+      workList.innerHTML = "";
+      indexGrid.innerHTML = "";
+
+      projects.forEach(project => {
+        const card = document.createElement("button");
+        card.className = "floating-card";
+        card.type = "button";
+        card.dataset.id = project.id;
+        card.style.width = project.w + "px";
+        card.style.height = project.h + "px";
+        card.style.backgroundColor = project.bg;
+        card.innerHTML = `
+          <img src="${project.image}" alt="" onerror="this.style.display='none'" />
+          <div class="placeholder"><span>${project.id}</span><strong>${project.title}</strong></div>
+          <div class="card-caption">${project.title}<br />${project.subtitle}</div>
+        `;
+        card.addEventListener("mouseenter", () => showHover(project));
+        card.addEventListener("mouseleave", hideHover);
+        card.addEventListener("click", () => openImageModal(project));
+        visualWorld.appendChild(card);
+
+        const row = document.createElement("button");
+        row.className = "work-row";
+        row.type = "button";
+        row.innerHTML = `<span>${project.id}</span><span>${project.title}</span><span>${project.subtitle}</span>`;
+        row.addEventListener("mouseenter", () => showHover(project));
+        row.addEventListener("mouseleave", hideHover);
+        row.addEventListener("click", () => openImageModal(project));
+        workList.appendChild(row);
+
+        const indexItem = document.createElement("div");
+        indexItem.className = "index-item";
+        indexItem.style.backgroundColor = project.bg;
+        indexItem.innerHTML = `<img src="${project.image}" alt="" onerror="this.style.display='none'" /><div>${project.title}</div>`;
+        indexItem.addEventListener("click", () => openImageModal(project));
+        indexGrid.appendChild(indexItem);
+      });
+    }
+
+    function updateCards() {
+      const cards = document.querySelectorAll(".floating-card");
+      const radiusX = 770;
+      const radiusY = 430;
+      const centerX = 50;
+      const centerY = 43;
+      const orbit = scrollProgress * Math.PI * 2.55;
+
+      projects.forEach((project, index) => {
+        const card = cards[index];
+        const angle = (index / projects.length) * Math.PI * 2 + orbit;
+        const depth = Math.sin(angle);
+        const x = centerX + (Math.cos(angle) * radiusX) / 16;
+        const y = centerY + (Math.sin(angle) * radiusY) / 9;
+        const scale = 0.72 + (depth + 1) * 0.25;
+        const zIndex = Math.round((depth + 1) * 100);
+        const parallaxX = mouse.x * (25 + index * 3) * (depth + 1);
+        const parallaxY = mouse.y * (18 + index * 2) * (depth + 1);
+        const opacity = clamp(0.48 + scale * 0.58, 0.45, 1);
+
+        card.style.left = x + "%";
+        card.style.top = y + "%";
+        card.style.zIndex = zIndex;
+        card.style.opacity = opacity;
+        card.style.transform = `translate(-50%, -50%) translate3d(${parallaxX}px, ${parallaxY}px, 0) rotate(${project.rotate + mouse.x * 7}deg) scale(${scale})`;
+      });
+    }
+
+    function updateScroll() {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      updateCards();
+    }
+
+    document.addEventListener("mousemove", event => {
+      mouse = {
+        x: event.clientX / window.innerWidth - 0.5,
+        y: event.clientY / window.innerHeight - 0.5
+      };
+      updateCards();
+    });
+
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    window.addEventListener("resize", updateCards);
+
+    navButtons.forEach(button => {
+      button.addEventListener("click", () => openView(button.dataset.view));
+    });
+
+    passwordForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (passwordInput.value === "hallooo!") {
+        document.body.classList.remove("is-locked");
+        document.body.classList.add("is-unlocked");
+      } else {
+        passwordError.style.display = "block";
+        passwordInput.select();
+      }
+    });
+
+    modalClose.addEventListener("click", closeImageModal);
+
+    imageModal.addEventListener("click", event => {
+      if (event.target === imageModal) closeImageModal();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeImageModal();
+    });
+
+    document.getElementById("playPause").addEventListener("click", togglePlayPause);
+    document.getElementById("prevSong").addEventListener("click", () => loadSong(currentSongIndex - 1, true));
+    document.getElementById("nextSong").addEventListener("click", () => loadSong(currentSongIndex + 1, true));
+
+    audio.addEventListener("ended", () => loadSong(currentSongIndex + 1, true));
+
+    createCards();
+    updateMusicUI();
+    updateScroll();
+  </script>
+</body>
+</html>
