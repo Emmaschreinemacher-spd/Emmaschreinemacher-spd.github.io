@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Portfolio — Creative work rooted in design, code, and visual culture"/>
+<meta property="og:title" content="Your Name — Portfolio"/>
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{font-family:'Inter',sans-serif;font-size:14px;background:#d6d3cc;color:#111;cursor:none;user-select:none}
+*{cursor:none !important}
+#cursor{position:fixed;z-index:99999;pointer-events:none;top:0;left:0;width:14px;height:22px;image-rendering:pixelated;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='22' shape-rendering='crispEdges'%3E%3Crect x='1' y='0' width='2' height='2' fill='white'/%3E%3Crect x='0' y='1' width='2' height='18' fill='white'/%3E%3Crect x='1' y='18' width='2' height='2' fill='white'/%3E%3Crect x='2' y='2' width='2' height='2' fill='white'/%3E%3Crect x='3' y='3' width='2' height='2' fill='white'/%3E%3Crect x='4' y='4' width='2' height='2' fill='white'/%3E%3Crect x='5' y='5' width='2' height='2' fill='white'/%3E%3Crect x='6' y='6' width='2' height='2' fill='white'/%3E%3Crect x='7' y='7' width='2' height='2' fill='white'/%3E%3Crect x='6' y='8' width='4' height='2' fill='white'/%3E%3Crect x='7' y='10' width='2' height='2' fill='white'/%3E%3Crect x='7' y='12' width='2' height='2' fill='white'/%3E%3Crect x='8' y='12' width='4' height='2' fill='white'/%3E%3Crect x='10' y='14' width='2' height='2' fill='white'/%3E%3Crect x='10' y='16' width='2' height='2' fill='white'/%3E%3Crect x='8' y='18' width='4' height='2' fill='white'/%3E%3Crect x='2' y='1' width='1' height='16' fill='black'/%3E%3Crect x='3' y='3' width='1' height='1' fill='black'/%3E%3Crect x='4' y='4' width='1' height='1' fill='black'/%3E%3Crect x='5' y='5' width='1' height='1' fill='black'/%3E%3Crect x='6' y='6' width='1' height='1' fill='black'/%3E%3Crect x='7' y='7' width='1' height='1' fill='black'/%3E%3Crect x='8' y='8' width='2' height='1' fill='black'/%3E%3Crect x='8' y='9' width='1' height='1' fill='black'/%3E%3Crect x='8' y='10' width='1' height='2' fill='black'/%3E%3Crect x='9' y='12' width='1' height='2' fill='black'/%3E%3Crect x='10' y='14' width='1' height='2' fill='black'/%3E%3Crect x='11' y='16' width='1' height='2' fill='black'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:contain}
+.bg-grid{position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,0,0,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.035) 1px,transparent 1px);background-size:44px 44px}
+.ui-tl{position:fixed;top:22px;left:22px;z-index:500;font-size:11px;line-height:1.7;color:#555;pointer-events:none;letter-spacing:.01em;max-width:220px}
+.ui-tr{position:fixed;top:22px;right:22px;z-index:500;text-align:right;font-size:11px;color:#555;letter-spacing:.01em}
+.ui-tr a{color:#555;text-decoration:none;pointer-events:all}
+.ui-tr a:hover{color:#111}
+.win{position:fixed;border-radius:10px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.12),0 20px 48px rgba(0,0,0,.10);user-select:none;touch-action:none;transition:box-shadow .2s;will-change:transform;outline:1px solid rgba(0,0,0,.08)}
+.win.is-dragging{box-shadow:0 4px 8px rgba(0,0,0,.10),0 24px 64px rgba(0,0,0,.22),0 40px 80px rgba(0,0,0,.12)}
+.win-bar{height:30px;display:flex;align-items:center;padding:0 12px;gap:7px;flex-shrink:0}
+.win-dots{display:flex;gap:6px;align-items:center;flex-shrink:0}
+.win-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.win-dot.r{background:#ff5f57}.win-dot.y{background:#ffbc2e}.win-dot.g{background:#28c840}
+.win-title{flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.04em;margin-right:44px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win-body{width:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+.win-body img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.win-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,0,0,.22)}
+.win-hint{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.45) 0%,transparent 45%);display:flex;align-items:flex-end;padding:10px 12px;opacity:0;transition:opacity .25s;pointer-events:none}
+.win-hint span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.win:hover .win-hint{opacity:1}
+.win-audio{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:18px 14px}
+.win-audio-cover{width:80px;height:80px;border-radius:50%;overflow:hidden;flex-shrink:0;background:rgba(0,0,0,.15)}
+.win-audio-cover img{width:100%;height:100%;object-fit:cover}
+.win-audio audio{width:100%;outline:none}
+.bar{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:600;display:flex;align-items:center;gap:2px;background:rgba(12,12,12,.90);backdrop-filter:blur(18px);border-radius:999px;padding:5px 8px;box-shadow:0 4px 24px rgba(0,0,0,.22)}
+.bar-btn{background:none;border:none;color:#aaa;font-family:'Inter',sans-serif;font-size:11px;padding:7px 18px;border-radius:999px;letter-spacing:.03em;transition:background .2s,color .2s}
+.bar-btn:hover,.bar-btn.active{background:rgba(255,255,255,.14);color:#fff}
+.bar-divider{width:1px;height:16px;background:rgba(255,255,255,.1);flex-shrink:0}
+.bar-news{font-size:10px;color:#555;padding:7px 14px 7px 12px;white-space:nowrap;overflow:hidden;max-width:210px;letter-spacing:.02em}
+.panel{position:fixed;bottom:76px;left:50%;transform:translateX(-50%) translateY(14px);z-index:600;width:min(660px,92vw);background:rgba(14,14,14,.92);backdrop-filter:blur(20px);border-radius:8px;padding:32px 36px;display:grid;grid-template-columns:1fr 1fr;gap:28px;opacity:0;pointer-events:none;transition:opacity .32s,transform .32s}
+.panel.visible{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:all}
+.panel-statement{color:#fff;font-size:clamp(13px,1.5vw,17px);font-weight:300;line-height:1.7}
+.panel-cols{display:flex;gap:32px}
+.panel-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#444;margin-bottom:10px}
+.panel-list{list-style:none}
+.panel-list li{font-size:12px;color:#aaa;line-height:2.2}
+#overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .38s cubic-bezier(.25,.46,.45,.94)}
+#overlay.open{opacity:1;pointer-events:all}
+.ov-backdrop{position:absolute;inset:0;background:rgba(4,4,4,.84);backdrop-filter:blur(10px)}
+.ov-window{position:relative;z-index:1;width:min(900px,96vw);max-height:92vh;background:#f2f1ed;border-radius:10px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 40px 100px rgba(0,0,0,.35);transform:scale(.96) translateY(16px);transition:transform .38s cubic-bezier(.25,.46,.45,.94);outline:1px solid rgba(0,0,0,.06)}
+#overlay.open .ov-window{transform:scale(1) translateY(0)}
+.ov-media{overflow:hidden;min-height:440px;display:flex;align-items:center;justify-content:center}
+.ov-media img{width:100%;height:100%;object-fit:cover;display:block}
+.ov-audio-body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:44px;width:100%;background:#111}
+.ov-audio-cover{width:160px;height:160px;border-radius:50%;overflow:hidden;background:#222;flex-shrink:0;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.ov-audio-cover img{width:100%;height:100%;object-fit:cover}
+.ov-audio-body audio{width:100%;outline:none}
+.ov-info{padding:44px 40px;display:flex;flex-direction:column;justify-content:space-between;overflow-y:auto;max-height:92vh}
+.ov-close{position:absolute;top:14px;right:14px;z-index:10;width:28px;height:28px;border:none;border-radius:50%;background:rgba(0,0,0,.09);display:flex;align-items:center;justify-content:center;transition:background .2s}
+.ov-close:hover{background:rgba(0,0,0,.18)}
+.ov-index{font-size:10px;letter-spacing:.22em;color:#bbb;margin-bottom:12px}
+.ov-category{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#888;margin-bottom:12px}
+.ov-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,52px);font-weight:300;line-height:.95;margin-bottom:22px}
+.ov-title em{font-style:italic}
+.ov-desc{font-size:13px;line-height:1.82;color:#555;margin-bottom:26px}
+.ov-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:30px}
+.ov-tag{font-size:9px;letter-spacing:.15em;text-transform:uppercase;border:1px solid #d8d6d0;color:#888;padding:3px 10px}
+.ov-link{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#111;text-decoration:none;border-bottom:1px solid #111;padding-bottom:4px;width:fit-content;transition:color .2s,border-color .2s;pointer-events:all}
+.ov-link:hover{color:#631C22;border-color:#631C22}
+@media(max-width:680px){.ov-window{grid-template-columns:1fr}.ov-media{min-height:220px}.ov-info{padding:28px 22px}.ui-tl,.ui-tr{display:none}*{cursor:auto !important}#cursor{display:none}}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div class="bg-grid"></div>
+
+<!-- ✏️ UPDATE: your tagline -->
+<div class="ui-tl">Creative work rooted in design,<br>code, and visual culture</div>
+
+<!-- ✏️ UPDATE: your city, email, GitHub -->
+<div class="ui-tr">
+  Rotterdam, NL<br>
+  <a href="mailto:hello@yourname.com">hello@yourname.com</a> · <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+</div>
+
+<!-- Studio panel -->
+<div class="panel" id="panel">
+  <!-- ✏️ UPDATE -->
+  <div class="panel-statement">A multidisciplinary creative working at the intersection of design, code, and visual culture. Based in Rotterdam.</div>
+  <div class="panel-cols">
+    <div>
+      <p class="panel-label">Services</p>
+      <ul class="panel-list">
+        <li>Brand Identity</li><li>Web Design &amp; Dev</li>
+        <li>Photography</li><li>Motion Design</li><li>Music Production</li>
+      </ul>
+    </div>
+    <div>
+      <p class="panel-label">Clients</p>
+      <ul class="panel-list">
+        <li>FICQ Partners</li><li>Groenteboer</li>
+        <li>Client Three</li><li>Client Four</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom bar -->
+<div class="bar">
+  <button class="bar-btn active" onclick="setTab('work',this)">Work</button>
+  <button class="bar-btn" onclick="setTab('index',this)">Index</button>
+  <button class="bar-btn" onclick="setTab('studio',this)">Studio</button>
+  <button class="bar-btn" onclick="setTab('news',this)">News</button>
+  <div class="bar-divider"></div>
+  <!-- ✏️ UPDATE: ticker text -->
+  <div class="bar-news" id="ticker">↳&nbsp; FICQ Partners identity &nbsp;·&nbsp; Japan 2024 &nbsp;·&nbsp; Postcard Series I–III &nbsp;·&nbsp; Available for freelance &nbsp;·&nbsp;</div>
+</div>
+
+<!-- Detail overlay -->
+<div id="overlay">
+  <div class="ov-backdrop" id="ovBackdrop"></div>
+  <div class="ov-window">
+    <button class="ov-close" id="ovClose" aria-label="Close">
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="1" y1="1" x2="10" y2="10" stroke="#444" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="1" x2="1" y2="10" stroke="#444" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <div class="ov-media" id="ovMedia"></div>
+    <div class="ov-info">
+      <div>
+        <p class="ov-index" id="ovIndex"></p>
+        <p class="ov-category" id="ovCat"></p>
+        <h2 class="ov-title" id="ovTitle"></h2>
+        <p class="ov-desc" id="ovDesc"></p>
+        <div class="ov-tags" id="ovTags"></div>
+      </div>
+      <a href="#" class="ov-link" id="ovLink" target="_blank" rel="noopener">
+        View on GitHub
+        <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 4.5H13M13 4.5L9.5 1M13 4.5L9.5 8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+const PALETTE=[
+  {bar:'#631C22',body:'#f0d8da'},{bar:'#8a8fad',body:'#e0e2f0'},
+  {bar:'#440F1C',body:'#e4ccd2'},{bar:'#a09021',body:'#ede8c4'},
+  {bar:'#b84e1a',body:'#f2ddd0'},{bar:'#6a9058',body:'#d8e8cc'},
+  {bar:'#5a6080',body:'#d8dcee'},{bar:'#8a3a10',body:'#eeddd0'},
+  {bar:'#3d5c30',body:'#d2e6c8'},{bar:'#7a5030',body:'#ecddd0'},
+];
+
+// ✏️ UPDATE: edit your projects here
+const PROJECTS=[
+  {file:'ficq-partners.jpg',type:'image',title:'FICQ <em>Partners</em>',cat:'Brand Identity',desc:'A complete brand identity system for FICQ Partners — wordmark, colour palette, typography, and application across print and digital touchpoints.',tags:['Branding','Identity','Print','Figma'],link:'https://github.com/yourusername/ficq-partners',w:260,h:210},
+  {file:'groenteboer.jpg',type:'image',title:'Groente<em>boer</em>',cat:'Visual Identity',desc:'Brand identity and packaging design for a local Rotterdam greengrocers. Rooted in warmth, colour, and neighbourhood culture.',tags:['Branding','Packaging','Illustration'],link:'https://github.com/yourusername/groenteboer',w:240,h:200},
+  {file:'japan-2024.jpg',type:'image',title:'Japan <em>2024</em>',cat:'Photography',desc:'A photographic diary from a three-week journey through Japan — exploring light, ritual, and the quiet tension between old and new.',tags:['Photography','Editorial','Lightroom'],link:'https://github.com/yourusername/japan-2024',w:250,h:220},
+  {file:'juul1.jpg',type:'image',title:'Juul <em>Portrait</em>',cat:'Photography',desc:'Portrait series shot on location — exploring identity, stillness, and the space between subject and camera.',tags:['Photography','Portrait','Natural light'],link:'https://github.com/yourusername/juul',w:230,h:200},
+  {file:'postkaartje1.png',type:'image',title:'Postcard <em>Series I</em>',cat:'Print Design',desc:'First edition of a self-initiated postcard series — hand-designed and printed in a limited run of 50.',tags:['Print','Illustration','Risograph'],link:'https://github.com/yourusername/postkaartjes',w:270,h:190},
+  {file:'postkaartje2.png',type:'image',title:'Postcard <em>Series II</em>',cat:'Print Design',desc:'Second edition pushed further into abstraction.',tags:['Print','Illustration','Typography'],link:'https://github.com/yourusername/postkaartjes',w:270,h:190},
+  {file:'postkaartje3.png',type:'image',title:'Postcard <em>Series III</em>',cat:'Print Design',desc:'Third and final edition — colour, composition, and form at their limits.',tags:['Print','Colour','Composition'],link:'https://github.com/yourusername/postkaartjes',w:270,h:190},
+  {file:'song1.jpg',audioFile:'song1.mp3',type:'audio',title:'Track <em>One</em>',cat:'Music / Sound',desc:'An original composition exploring ambient texture and rhythm. Produced entirely independently.',tags:['Music','Production','Ambient'],link:'https://github.com/yourusername/music',w:240,h:160},
+  {file:'song2.jpg',audioFile:'song2.mp3',type:'audio',title:'Track <em>Two</em>',cat:'Music / Sound',desc:'Second original track — rhythmic, percussive, pushing into experimental territory.',tags:['Music','Production','Experimental'],link:'https://github.com/yourusername/music',w:240,h:160},
+  {file:'emma-foto.png',type:'image',title:'Emma <em>Portrait</em>',cat:'Photography',desc:'Portrait session focused on natural light and candid emotion.',tags:['Photography','Portrait','Natural light'],link:'https://github.com/yourusername/portraits',w:230,h:210},
+];
+
+const $cur=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{$cur.style.left=e.clientX+'px';$cur.style.top=e.clientY+'px'});
+
+let zStack=10;
+function raise(el){el.style.zIndex=++zStack}
+
+const winEls=[],floats=[];
+const vw=()=>window.innerWidth,vh=()=>window.innerHeight;
+
+PROJECTS.forEach((proj,idx)=>{
+  const pal=PALETTE[idx%PALETTE.length];
+  const win=document.createElement('div');
+  win.className='win';
+  win.style.width=proj.w+'px';
+  const pad=60;
+  const bx=pad+Math.random()*(vw()-proj.w-pad*2);
+  const by=pad+Math.random()*(vh()-proj.h-30-pad*2);
+  win.style.left=bx+'px';win.style.top=by+'px';win.style.zIndex=idx+1;
+
+  const bar=document.createElement('div');
+  bar.className='win-bar';bar.style.background=pal.bar;
+  bar.innerHTML=`<div class="win-dots"><div class="win-dot r"></div><div class="win-dot y"></div><div class="win-dot g"></div></div><div class="win-title">${proj.title.replace(/<[^>]+>/g,'')} — ${proj.cat}</div>`;
+  win.appendChild(bar);
+
+  const body=document.createElement('div');
+  body.style.height=proj.h+'px';body.style.background=pal.body;
+
+  if(proj.type==='audio'){
+    body.className='win-body win-audio';
+    const cover=document.createElement('div');cover.className='win-audio-cover';
+    const ci=document.createElement('img');ci.src=proj.file;ci.draggable=false;
+    cover.appendChild(ci);body.appendChild(cover);
+    const au=document.createElement('audio');au.controls=true;au.preload='none';au.src=proj.audioFile;
+    body.appendChild(au);
+  } else {
+    body.className='win-body';
+    const img=document.createElement('img');img.src=proj.file;img.draggable=false;img.alt=proj.title.replace(/<[^>]+>/g,'');
+    img.onerror=()=>{img.remove();const ph=document.createElement('div');ph.className='win-ph';ph.textContent=proj.cat;body.insertBefore(ph,body.firstChild)};
+    body.appendChild(img);
+    const hint=document.createElement('div');hint.className='win-hint';hint.innerHTML='<span>Click to view ↗</span>';
+    body.appendChild(hint);
+  }
+  win.appendChild(body);
+  document.body.appendChild(win);
+  winEls.push(win);
+  floats.push({baseX:bx,baseY:by,ampX:3+Math.random()*7,ampY:4+Math.random()*9,spdX:.22+Math.random()*.32,spdY:.18+Math.random()*.28,phX:Math.random()*Math.PI*2,phY:Math.random()*Math.PI*2,active:false});
+});
+
+let activeWin=-1,dragOX=0,dragOY=0,dragMoved=false;
+
+winEls.forEach((win,idx)=>{
+  const proj=PROJECTS[idx];
+  const bar=win.querySelector('.win-bar');
+  const body=win.querySelector('.win-body,.win-audio');
+  function startDrag(ex,ey){activeWin=idx;dragOX=ex-floats[idx].baseX;dragOY=ey-floats[idx].baseY;dragMoved=false;floats[idx].active=true;raise(win);win.classList.add('is-dragging')}
+  bar.addEventListener('mousedown',e=>{e.preventDefault();startDrag(e.clientX,e.clientY)});
+  bar.addEventListener('touchstart',e=>startDrag(e.touches[0].clientX,e.touches[0].clientY),{passive:true});
+  if(proj.type!=='audio'){
+    body.addEventListener('mousedown',e=>{e.preventDefault();startDrag(e.clientX,e.clientY)});
+    body.addEventListener('touchstart',e=>startDrag(e.touches[0].clientX,e.touches[0].clientY),{passive:true});
+  } else {
+    win.addEventListener('mousedown',()=>raise(win));
+  }
+});
+
+document.addEventListener('mousemove',e=>{
+  if(activeWin===-1)return;
+  const nx=e.clientX-dragOX,ny=e.clientY-dragOY;
+  if(Math.abs(nx-floats[activeWin].baseX)+Math.abs(ny-floats[activeWin].baseY)>4)dragMoved=true;
+  floats[activeWin].baseX=nx;floats[activeWin].baseY=ny;
+});
+document.addEventListener('touchmove',e=>{
+  if(activeWin===-1)return;
+  dragMoved=true;floats[activeWin].baseX=e.touches[0].clientX-dragOX;floats[activeWin].baseY=e.touches[0].clientY-dragOY;
+},{passive:true});
+function endDrag(){
+  if(activeWin===-1)return;
+  winEls[activeWin].classList.remove('is-dragging');floats[activeWin].active=false;
+  if(!dragMoved)openOverlay(activeWin);
+  activeWin=-1;
+}
+document.addEventListener('mouseup',endDrag);
+document.addEventListener('touchend',endDrag);
+
+function animate(ts){
+  ts*=.001;
+  winEls.forEach((win,i)=>{
+    const f=floats[i];
+    const fx=f.active?0:Math.sin(ts*f.spdX+f.phX)*f.ampX;
+    const fy=f.active?0:Math.cos(ts*f.spdY+f.phY)*f.ampY;
+    win.style.left=(f.baseX+fx)+'px';win.style.top=(f.baseY+fy)+'px';
+  });
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+
+const $overlay=document.getElementById('overlay');
+const $ovMedia=document.getElementById('ovMedia');
+let $curAudio=null;
+
+function openOverlay(idx){
+  const proj=PROJECTS[idx],pal=PALETTE[idx%PALETTE.length];
+  document.getElementById('ovIndex').textContent=String(idx+1).padStart(2,'0');
+  document.getElementById('ovCat').textContent=proj.cat;
+  document.getElementById('ovTitle').innerHTML=proj.title;
+  document.getElementById('ovDesc').textContent=proj.desc;
+  document.getElementById('ovTags').innerHTML=proj.tags.map(t=>`<span class="ov-tag">${t}</span>`).join('');
+  document.getElementById('ovLink').href=proj.link;
+  $ovMedia.innerHTML='';
+  if(proj.type==='audio'){
+    $ovMedia.style.background='#111';
+    const wrap=document.createElement('div');wrap.className='ov-audio-body';
+    const cover=document.createElement('div');cover.className='ov-audio-cover';
+    const ci=document.createElement('img');ci.src=proj.file;cover.appendChild(ci);wrap.appendChild(cover);
+    const au=document.createElement('audio');au.controls=true;au.src=proj.audioFile;$curAudio=au;wrap.appendChild(au);
+    $ovMedia.appendChild(wrap);
+  } else {
+    $ovMedia.style.background=pal.body;
+    const img=document.createElement('img');img.src=proj.file;img.alt=proj.title.replace(/<[^>]+>/g,'');
+    $ovMedia.appendChild(img);
+  }
+  $overlay.classList.add('open');
+}
+function closeOverlay(){$overlay.classList.remove('open');if($curAudio){$curAudio.pause();$curAudio=null}}
+document.getElementById('ovClose').addEventListener('click',closeOverlay);
+document.getElementById('ovBackdrop').addEventListener('click',closeOverlay);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOverlay()});
+
+function setTab(view,btn){
+  document.querySelectorAll('.bar-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel').classList.toggle('visible',view==='studio');
+}
+
+const $ticker=document.getElementById('ticker');
+let tp=0;
+(function runTicker(){tp-=.38;if(Math.abs(tp)>$ticker.scrollWidth/2)tp=0;$ticker.style.transform=`translateX(${tp}px)`;requestAnimationFrame(runTicker)})();
+</script>
+</body>
+</html> 
+
